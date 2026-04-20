@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="g27" cx="42%" cy="36%" r="68%">
+      <stop offset="0%" stop-color="#4DB8F5"/>
+      <stop offset="55%" stop-color="#1A6DC8"/>
+      <stop offset="100%" stop-color="#0B3585"/>
+    </radialGradient>
+    <!-- Clip to inner white circle for the bottom banner -->
+    <clipPath id="cc27"><circle cx="100" cy="100" r="68"/></clipPath>
+    <!-- Wider ring: inner circle at r=68 gives 31px of blue ring for the text -->
+    <path id="tp27" d="M 16,100 A 84,84 0 0,0 184,100"/>
+  </defs>
+
+  <!-- Outer blue circle -->
+  <circle cx="100" cy="100" r="99" fill="url(#g27)"/>
+  <!-- White inner content area (wider ring than before) -->
+  <circle cx="100" cy="100" r="68" fill="white"/>
+
+  <!-- "Information Security Management" — now fits comfortably in the wider ring -->
+  <text font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="white" letter-spacing="0.2">
+    <textPath href="#tp27" startOffset="50%" text-anchor="middle">Information Security Management</textPath>
+  </text>
+
+  <!-- ISO -->
+  <text x="100" y="72" text-anchor="middle"
+        font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="900" fill="#0B3585">ISO</text>
+  <!-- 27001 -->
+  <text x="100" y="102" text-anchor="middle"
+        font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="900" fill="#0B3585">27001</text>
+
+  <!-- Blue bottom banner clipped to inner circle -->
+  <rect x="20" y="108" width="160" height="55" fill="#0B3585" clip-path="url(#cc27)"/>
+  <!-- Certified -->
+  <text x="100" y="134" text-anchor="middle"
+        font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="white" letter-spacing="0.5">Certified</text>
+</svg>

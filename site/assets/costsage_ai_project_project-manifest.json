@@ -1,0 +1,182 @@
+{
+  "project": "costsage_ai_project",
+  "source": "https://costsage.ai",
+  "extractedOn": "2026-04-11T20:12:43.876Z",
+  "structure": {
+    "logos/": {
+      "description": "Brand logos in various sizes",
+      "files": [
+        {
+          "filename": "cost-sage-logo-dark-01.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/08/cost-sage-logo-dark-01.png",
+          "size": "634x138",
+          "type": "Main logo (full size)"
+        },
+        {
+          "filename": "cost-sage-logo-dark-01-300x65.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/08/cost-sage-logo-dark-01-300x65.png",
+          "size": "300x65",
+          "type": "Main logo (medium)"
+        },
+        {
+          "filename": "cropped-cost-sage-logo-dark-01-32x32.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/08/cropped-cost-sage-logo-dark-01-32x32.png",
+          "size": "32x32",
+          "type": "Favicon"
+        },
+        {
+          "filename": "cropped-cost-sage-logo-dark-01-192x192.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/08/cropped-cost-sage-logo-dark-01-192x192.png",
+          "size": "192x192",
+          "type": "App icon"
+        },
+        {
+          "filename": "cropped-cost-sage-logo-dark-01-180x180.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/08/cropped-cost-sage-logo-dark-01-180x180.png",
+          "size": "180x180",
+          "type": "Apple touch icon"
+        }
+      ]
+    },
+    "product_images/": {
+      "description": "Product screenshots, UI elements, partner logos",
+      "files": [
+        {
+          "filename": "aws.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/aws.png"
+        },
+        {
+          "filename": "azure.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/12/azure.png"
+        },
+        {
+          "filename": "Group-1171275200-2.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/Group-1171275200-2.png"
+        },
+        {
+          "filename": "ideal-fit.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/12/ideal-fit.png"
+        },
+        {
+          "filename": "Vulcan-Forged-1.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/Vulcan-Forged-1.png"
+        },
+        {
+          "filename": "Vulcan-Forged.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/Vulcan-Forged.png"
+        },
+        {
+          "filename": "Group-1171275203.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/Group-1171275203.png"
+        },
+        {
+          "filename": "aws-logo.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/aws-logo.png"
+        },
+        {
+          "filename": "Group-1171275243.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/11/Group-1171275243.png"
+        },
+        {
+          "filename": "Microsoft_Azure.svg-1.svg",
+          "url": "https://costsage.ai/wp-content/uploads/2025/12/Microsoft_Azure.svg-1.svg"
+        },
+        {
+          "filename": "jill-marshal-cto.jpg",
+          "url": "https://costsage.ai/wp-content/uploads/2025/12/jill-marshal-cto.jpg"
+        },
+        {
+          "filename": "mike.jpg",
+          "url": "https://costsage.ai/wp-content/uploads/2025/12/mike.jpg"
+        },
+        {
+          "filename": "Group-1171275201-1.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/Group-1171275201-1.png"
+        },
+        {
+          "filename": "Group-1171275139@2x.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/Group-1171275139@2x.png"
+        },
+        {
+          "filename": "Group-1171275177.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/Group-1171275177.png"
+        },
+        {
+          "filename": "Group-1171275141.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/Group-1171275141.png"
+        },
+        {
+          "filename": "billing-access.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/billing-access.png"
+        },
+        {
+          "filename": "connect-approve.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/connect-approve.png"
+        },
+        {
+          "filename": "Icon-2.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/Icon-2.png"
+        },
+        {
+          "filename": "Group-1171275167.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/Group-1171275167.png"
+        },
+        {
+          "filename": "Icon.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/Icon.png"
+        },
+        {
+          "filename": "Group-1171275169.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/Group-1171275169.png"
+        },
+        {
+          "filename": "Group-1171275178.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/Group-1171275178.png"
+        }
+      ]
+    },
+    "blog_images/": {
+      "description": "Blog post featured images",
+      "files": [
+        {
+          "filename": "cloud-database-solutions.jpg",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/cloud-database-solutions.jpg"
+        },
+        {
+          "filename": "aws-cost-optimization-best-practices-1.jpg",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/aws-cost-optimization-best-practices-1.jpg"
+        },
+        {
+          "filename": "AWS-cost-optimization-tools.png",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/AWS-cost-optimization-tools.png"
+        },
+        {
+          "filename": "AWS-Cost-Optimization-1.jpg",
+          "url": "https://costsage.ai/wp-content/uploads/2025/10/AWS-Cost-Optimization-1.jpg"
+        }
+      ]
+    },
+    "videos/": {
+      "description": "Customer testimonial videos",
+      "files": [
+        {
+          "filename": "bobby-video.mp4",
+          "url": "https://costsage.ai/wp-content/uploads/2025/12/bobby-video.mp4",
+          "description": "Bobby - CEO NovoStack Lab testimonial"
+        },
+        {
+          "filename": "jill-marshal.mp4",
+          "url": "https://costsage.ai/wp-content/uploads/2025/12/jill-marshal.mp4",
+          "description": "Jill Marshal - CTO Tech Maze testimonial"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "logos": 5,
+    "product_images": 23,
+    "blog_images": 4,
+    "videos": 2,
+    "total_assets": 34
+  }
+}

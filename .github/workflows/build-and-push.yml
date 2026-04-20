@@ -1,0 +1,93 @@
+name: Build & Push to GHCR
+
+on:
+  push:
+    branches: [main, staging, dev]
+    tags: ['v*.*.*']
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}  # shirazvaival/costsage-web
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Determine build environment
+        id: env
+        run: |
+          REF="${GITHUB_REF_NAME}"
+          case "$REF" in
+            main)    echo "env=prod"    >> "$GITHUB_OUTPUT" ;;
+            staging) echo "env=staging" >> "$GITHUB_OUTPUT" ;;
+            dev)     echo "env=dev"     >> "$GITHUB_OUTPUT" ;;
+            v*)      echo "env=prod"    >> "$GITHUB_OUTPUT" ;;
+            *)       echo "env=dev"     >> "$GITHUB_OUTPUT" ;;
+          esac
+          echo "sha_short=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+          echo "build_time=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "$GITHUB_OUTPUT"
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata (tags, labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=prod,enable=${{ github.ref == 'refs/heads/main' }}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=raw,value=staging,enable=${{ github.ref == 'refs/heads/staging' }}
+            type=raw,value=dev,enable=${{ github.ref == 'refs/heads/dev' }}
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix=sha-,format=short
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            BUILD_ENV=${{ steps.env.outputs.env }}
+            GIT_SHA=${{ steps.env.outputs.sha_short }}
+            BUILD_TIME=${{ steps.env.outputs.build_time }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Summary
+        run: |
+          {
+            echo "## Build summary"
+            echo ""
+            echo "| Field | Value |"
+            echo "|-------|-------|"
+            echo "| Env   | \`${{ steps.env.outputs.env }}\` |"
+            echo "| SHA   | \`${{ steps.env.outputs.sha_short }}\` |"
+            echo "| Time  | \`${{ steps.env.outputs.build_time }}\` |"
+            echo ""
+            echo "### Tags pushed"
+            echo '```'
+            echo "${{ steps.meta.outputs.tags }}"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

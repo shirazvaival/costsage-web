@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, follow"/>
+  <title>CostSage — Agentic AI for FinOps | Cut Cloud Bills by 35%</title>
+  <meta name="description" content="CostSage is an Agentic AI system for FinOps. It reasons across your AWS &amp; Azure infrastructure, plans cost optimisations, and executes them autonomously. First savings in under 60 seconds."/>
+  <link rel="canonical" href="https://costsage.ai/"/>
+  <link rel="icon" type="image/png" href="assets/costsage_ai_project_logos_cropped-cost-sage-logo-dark-01-32x32.png"/>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://costsage.ai/"/>
+  <meta property="og:site_name" content="CostSage"/>
+  <meta property="og:title" content="CostSage — Agentic AI for FinOps | Cut Cloud Bills by 35%"/>
+  <meta property="og:description" content="CostSage is an Agentic AI system for FinOps. It reasons, plans, and executes cloud cost optimisations across AWS &amp; Azure — 24/7, without engineer time."/>
+  <meta property="og:image" content="https://costsage.ai/assets/costsage_ai_project_product_images_Group-1171275139@2x.png"/>
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="CostSage — Agentic AI for FinOps | Cut Cloud Bills by 35%"/>
+  <meta name="twitter:description" content="CostSage is an Agentic AI system for FinOps. It reasons, plans, and executes cloud cost optimisations across AWS &amp; Azure — 24/7, without engineer time."/>
+  <meta name="twitter:image" content="https://costsage.ai/assets/costsage_ai_project_product_images_Group-1171275139@2x.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CostSage",
+    "url": "https://costsage.ai",
+    "logo": "https://costsage.ai/assets/costsage_ai_project_logos_cost-sage-logo-dark-01-300x65.png",
+    "description": "Agentic AI system for FinOps that reasons, plans, and executes cloud cost savings across AWS and Azure — autonomously.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": "support@costsage.ai"
+    }
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #7BC04B; --green-dark: #5a9e30; --green-text: #3d7a1f; --green-light: #d4f0b5; --green-xlight: #f0fae7;
+      --navy: #0d1f2d; --navy-light: #152b3e; --slate: #2e3d4e;
+      --gray: #6b7280; --gray-light: #f4f6f8; --white: #ffffff;
+      --border: #e5e9ee; --radius: 14px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08); --shadow-lg: 0 16px 56px rgba(0,0,0,0.16);
+      --orange: #f5a623;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); line-height: 1.6; }
+
+    /* ─── ANNOUNCEMENT BAR ─── */
+    .ann-bar {
+      background: linear-gradient(90deg, var(--green-dark), #3d7a1f);
+      color: var(--white); text-align: center; padding: 10px 20px;
+      font-size: 0.85rem; font-weight: 600; position: relative;
+    }
+    .ann-bar a { color: white; text-decoration: underline; margin-left: 8px; }
+    .ann-close { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 1.1rem; opacity: 0.7; background: none; border: none; color: white; line-height: 1; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 68px;
+    }
+    .nav-logo img { height: 36px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--slate); font-size: 0.92rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--green-text); }
+    .nav-cta { display: flex; gap: 10px; align-items: center; }
+    .nav-savings { font-size: 0.78rem; color: #3a7020; font-weight: 700; background: var(--green-xlight); padding: 4px 10px; border-radius: 100px; margin-right: 4px; }
+
+    /* ─── BUTTONS ─── */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 24px; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all .2s; text-decoration: none; border: none; white-space: nowrap; }
+    .btn-ghost { color: var(--slate); background: transparent; border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--green); color: var(--green-text); }
+    .btn-primary { background: var(--green); color: var(--white); }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(123,192,75,0.45); }
+    .btn-large { padding: 15px 36px; font-size: 1rem; border-radius: 10px; }
+    .btn-xl { padding: 18px 44px; font-size: 1.05rem; border-radius: 12px; }
+    .btn-white { background: var(--white); color: var(--navy); }
+    .btn-white:hover { background: var(--gray-light); }
+    .btn-navy { background: var(--navy); color: var(--white); }
+    .btn-navy:hover { background: var(--slate); }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(145deg, var(--navy) 0%, #0f2840 50%, #0d2315 100%);
+      padding: 80px 40px 72px; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 55% at 50% -10%, rgba(123,192,75,0.18) 0%, transparent 60%);
+    }
+    .hero-inner { max-width: 760px; margin: 0 auto; text-align: center; position: relative; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(123,192,75,0.12); border: 1px solid rgba(123,192,75,0.35);
+      color: var(--green); padding: 7px 18px; border-radius: 100px; font-size: 0.8rem; font-weight: 700;
+      margin-bottom: 28px;
+    }
+    .hero-badge .dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    .hero h1 { font-size: clamp(2.4rem, 5.5vw, 4.2rem); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .hero h1 em { color: var(--green); font-style: normal; }
+    .hero-sub { font-size: 1.15rem; color: rgba(255,255,255,0.72); max-width: 580px; margin: 0 auto 36px; line-height: 1.65; }
+
+    /* EMAIL CAPTURE IN HERO */
+    .hero-capture {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px; padding: 8px 8px 8px 24px;
+      display: flex; align-items: center; gap: 10px; max-width: 520px; margin: 0 auto 16px;
+    }
+    .hero-capture input {
+      flex: 1; background: transparent; border: none; outline: none;
+      color: white; font-size: 0.95rem; font-family: 'Inter', sans-serif;
+    }
+    .hero-capture input::placeholder { color: rgba(255,255,255,0.45); }
+    .hero-micro { font-size: 0.78rem; color: rgba(255,255,255,0.45); text-align: center; margin-bottom: 28px; }
+    .hero-micro a { color: rgba(255,255,255,0.65); }
+    .hero-demo-link { display: inline-flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.7); font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: color .2s; border: none; background: transparent; }
+    .hero-demo-link:hover { color: var(--white); }
+    .play-icon { width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.4); display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+    .hero-unique-claim { font-size: 0.88rem; color: rgba(255,255,255,0.75); margin-top: 14px; max-width: 540px; text-align: center; line-height: 1.6; font-style: italic; }
+    .hero-logo-bar { margin-top: 28px; text-align: center; }
+    .hlb-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+    .hlb-logos { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .hlb-logo { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 6px 14px; font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.65); }
+
+    /* HERO PROOF BAR */
+    .hero-proof {
+      display: flex; gap: 36px; justify-content: center; flex-wrap: wrap;
+      margin-top: 52px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); position: relative;
+    }
+    .proof-item { text-align: center; }
+    .proof-num { font-size: 2rem; font-weight: 900; color: var(--green); line-height: 1; }
+    .proof-label { font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-top: 4px; }
+
+    /* ─── GUARANTEE STRIP ─── */
+    .homepage-guarantee { background: linear-gradient(90deg, #064e3b 0%, #065f46 100%); padding: 14px 40px; }
+    .hg-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .hg-shield { font-size: 1.3rem; flex-shrink: 0; }
+    .hg-text { font-size: 0.87rem; color: rgba(255,255,255,0.9); display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .hg-text strong { color: #6ee7b7; }
+    .hg-link { font-size: 0.8rem; color: #6ee7b7; text-decoration: none; font-weight: 700; white-space: nowrap; padding: 6px 14px; border: 1px solid rgba(110,231,183,0.4); border-radius: 6px; }
+    .hg-link:hover { background: rgba(110,231,183,0.1); }
+
+    /* ─── TRUST BADGE STRIP ─── */
+    .trust-strip { background: var(--white); border-bottom: 1px solid var(--border); padding: 28px 40px; }
+    .trust-strip-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    .trust-label { font-size: 0.75rem; font-weight: 800; color: var(--gray); text-transform: uppercase; letter-spacing: .12em; white-space: nowrap; border-right: 1.5px solid var(--border); padding-right: 28px; }
+    .trust-badges { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; justify-content: center; }
+    /* AWS badges */
+    .tbadge { display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border: 1.5px solid var(--border); border-radius: 8px; transition: .2s; cursor: default; }
+    .tbadge:hover { border-color: #d0d8e0; box-shadow: var(--shadow); }
+    .tbadge-aws { background: #fff; }
+    .tbadge-aws img { height: 22px; }
+    .tbadge-aws .aws-text { line-height: 1.1; }
+    .tbadge-aws .aws-text span { display: block; font-size: 0.58rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: #232f3e; }
+    .tbadge-aws .aws-text .aws-sub { font-size: 0.65rem; color: var(--gray); }
+    /* ISO badges */
+    .tbadge-iso { flex-direction: column; padding: 8px 12px; text-align: center; min-width: 54px; }
+    .iso-star { color: var(--orange); font-size: 0.6rem; letter-spacing: -0.5px; }
+    .iso-label { font-size: 0.6rem; font-weight: 900; color: #1a5fa8; letter-spacing: .04em; text-transform: uppercase; }
+    .iso-num { font-size: 0.9rem; font-weight: 900; color: #1a5fa8; line-height: 1; }
+    .iso-year { font-size: 0.6rem; color: #1a5fa8; font-weight: 700; }
+    /* G2 badge */
+    .tbadge-g2 { flex-direction: column; padding: 8px 14px; background: #fff; border-color: #ff492c; min-width: 60px; text-align: center; }
+    .g2-logo { font-size: 1.4rem; font-weight: 900; color: #ff492c; line-height: 1; font-family: Georgia, serif; }
+    .g2-text { font-size: 0.58rem; font-weight: 800; color: var(--slate); text-transform: uppercase; letter-spacing: .04em; margin-top: 2px; }
+    .g2-stars { color: var(--orange); font-size: 0.6rem; }
+    /* Capterra */
+    .tbadge-capterra { background: #fff; border-color: #1f73b7; flex-direction: column; padding: 8px 14px; min-width: 68px; text-align: center; }
+    .cap-logo { font-size: 0.75rem; font-weight: 900; color: #1f73b7; letter-spacing: -0.3px; }
+    .cap-arrow { color: #ff7a00; font-size: 0.65rem; }
+    .cap-text { font-size: 0.56rem; font-weight: 700; color: var(--slate); text-transform: uppercase; letter-spacing: .04em; }
+    /* ISO 42001 */
+    .tbadge-iso42 { background: linear-gradient(135deg,#0a2540,#1a3a5c); border-color: #2d6a9f; flex-direction: column; padding: 8px 12px; min-width: 60px; text-align: center; }
+    .iso42-top { font-size: 0.58rem; font-weight: 900; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: .07em; }
+    .iso42-num { font-size: 0.88rem; font-weight: 900; color: #5bc8ff; line-height: 1; }
+    .iso42-tag { font-size: 0.55rem; font-weight: 800; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: .05em; margin-top: 2px; }
+    .iso42-ribbon { font-size: 0.5rem; font-weight: 800; color: #ffd700; letter-spacing: .04em; margin-top: 1px; }
+    .cmm-mid { font-size: 0.88rem; font-weight: 900; color: #fff; line-height: 1; }
+    .cmm-bot { font-size: 0.56rem; font-weight: 700; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: .06em; }
+    .stars { color: var(--orange); font-size: 1rem; letter-spacing: -1px; }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 96px 40px; }
+    .container { max-width: 1160px; margin: 0 auto; }
+    .chip { display: inline-block; background: var(--green-light); color: var(--green-dark); font-size: 0.75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; margin-bottom: 14px; }
+    .section-title { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 16px; }
+    .section-sub { font-size: 1rem; color: var(--gray); line-height: 1.65; }
+
+    /* ─── SAVINGS TICKER ─── */
+    .savings-ticker {
+      background: var(--green-xlight); border: 1.5px solid var(--green-light);
+      border-radius: 12px; padding: 20px 28px; margin-bottom: 48px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+    }
+    .ticker-left { display: flex; align-items: center; gap: 16px; }
+    .ticker-icon { width: 44px; height: 44px; background: var(--green); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .ticker-text strong { display: block; font-size: 1.1rem; font-weight: 800; color: var(--navy); }
+    .ticker-text span { font-size: 0.85rem; color: var(--gray); }
+    .ticker-right .btn { font-size: 0.85rem; padding: 9px 20px; }
+
+    /* ─── HOW IT WORKS ─── */
+    .hiw { background: var(--white); }
+    .hiw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .hiw-steps { display: flex; flex-direction: column; gap: 0; }
+    .hiw-step {
+      display: flex; gap: 20px; align-items: flex-start; padding: 24px 20px;
+      border-radius: 12px; transition: .2s; cursor: pointer;
+    }
+    .hiw-step.active, .hiw-step:hover { background: var(--green-xlight); }
+    .step-num { width: 40px; height: 40px; min-width: 40px; border-radius: 10px; background: var(--navy); color: var(--green); font-weight: 900; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
+    .hiw-step.active .step-num { background: var(--green); color: white; }
+    .step-content h4 { font-size: 1rem; font-weight: 700; margin-bottom: 5px; }
+    .step-content p { font-size: 0.88rem; color: var(--gray); line-height: 1.55; }
+    .hiw-visual { border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-lg); position: relative; }
+    .hiw-visual img { width: 100%; display: block; }
+    .savings-callout {
+      position: absolute; bottom: 20px; left: 20px;
+      background: var(--navy); border-radius: 10px; padding: 14px 18px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .savings-callout .amount { font-size: 1.4rem; font-weight: 900; color: var(--green); }
+    .savings-callout .label { font-size: 0.75rem; color: rgba(255,255,255,0.65); }
+
+    /* ─── FEATURES ─── */
+    .features { background: var(--gray-light); }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .feature-card {
+      background: var(--white); border-radius: var(--radius); padding: 28px 28px 24px;
+      border: 1.5px solid var(--border); transition: all .25s; cursor: pointer;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--green); }
+    .feature-card.fc-highlight { border-color: var(--green); box-shadow: 0 8px 32px rgba(123,192,75,0.18); }
+    .fc-badge { position: absolute; top: -13px; left: 22px; background: var(--green); color: #fff; font-size: 0.67rem; font-weight: 800; padding: 4px 13px; border-radius: 100px; letter-spacing: .05em; text-transform: uppercase; }
+    .feature-icon { width: 48px; height: 48px; background: var(--green-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 14px; }
+    .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .fc-metric { font-size: 0.74rem; font-weight: 700; color: var(--green-dark); background: var(--green-light); border-radius: 6px; padding: 4px 10px; display: inline-block; margin-bottom: 12px; }
+    .feature-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; margin-bottom: 18px; flex-grow: 1; }
+    .feature-card .learn { font-size: 0.82rem; color: var(--green-dark); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-top: auto; }
+    .feature-card .learn:hover { gap: 8px; }
+    .feature-strip { display: flex; justify-content: center; gap: 28px; margin-top: 18px; flex-wrap: wrap; }
+    .feature-strip span { font-size: 0.8rem; color: var(--slate); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .feature-strip span::before { content: '✓'; color: var(--green-dark); font-weight: 900; font-size: 0.85rem; }
+
+    /* ─── ACTION PREVIEW ─── */
+    .action-preview { background: var(--navy); padding: 96px 40px; }
+    .action-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .action-text .chip { background: rgba(123,192,75,0.2); color: var(--green); }
+    .action-text .section-title { color: var(--white); }
+    .action-text .section-sub { color: rgba(255,255,255,0.65); margin-bottom: 32px; }
+    .action-bullets { display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
+    .action-bullet { display: flex; gap: 12px; align-items: flex-start; }
+    .action-bullet .ck { width: 20px; height: 20px; min-width: 20px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.65rem; font-weight: 900; margin-top: 2px; }
+    .action-bullet p { font-size: 0.9rem; color: rgba(255,255,255,0.75); }
+    .action-img { border-radius: var(--radius); overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.5); }
+    .action-img img { width: 100%; display: block; }
+
+    /* ─── VIDEO TESTIMONIALS ─── */
+    .proof { background: var(--white); }
+    .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    /* Video testimonial card — 3-row: video / author bar / quote */
+    .video-card {
+      border-radius: 18px; overflow: hidden;
+      border: 1.5px solid var(--border); background: var(--navy);
+      transition: box-shadow .2s, transform .2s; display: flex; flex-direction: column;
+    }
+    .video-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .video-wrapper { position: relative; background: #111827; flex-shrink: 0; }
+    /* Contain video so portrait recordings show the full face — no cropping */
+    .video-wrapper video { width: 100%; display: block; height: 310px; object-fit: contain; background: #111827; }
+    .video-overlay-badge { position: absolute; top: 10px; left: 10px; background: var(--green); color: white; font-size: 0.68rem; font-weight: 800; padding: 4px 12px; border-radius: 100px; z-index: 3; letter-spacing: .03em; }
+    /* Author bar — sits cleanly below the video */
+    .video-author-bar { display: flex; align-items: center; gap: 13px; padding: 14px 18px; background: rgba(255,255,255,0.05); border-top: 1px solid rgba(255,255,255,0.09); }
+    .video-author-photo { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--green); flex-shrink: 0; }
+    .video-author-name { font-size: 0.93rem; font-weight: 800; color: #fff; line-height: 1.2; }
+    .video-author-title { font-size: 0.73rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+    .video-author-stars { color: var(--orange); font-size: 0.8rem; letter-spacing: -1px; margin-top: 4px; display: block; }
+    /* Quote strip */
+    .video-quote-strip { padding: 14px 18px 18px; border-top: 1px solid rgba(255,255,255,0.07); flex-grow: 1; }
+    .video-quote-strip p { font-size: 0.87rem; color: rgba(255,255,255,0.75); line-height: 1.65; font-style: italic; }
+    .proof-saving-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--green); color: white; font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 100px; margin-bottom: 14px; }
+    .stars { color: var(--orange); font-size: 0.95rem; letter-spacing: -1px; }
+    /* ─── TESTIMONIAL SLIDER ─── */
+    .testimonial-slider { position: relative; }
+    .slider-viewport { overflow: hidden; }
+    .slider-track { display: flex; gap: 24px; transition: transform 0.55s cubic-bezier(.4,0,.2,1); will-change: transform; }
+    /* Desktop: 3 cards visible */
+    .slider-track .video-card { flex: 0 0 calc((100% - 48px) / 3); min-width: 0; }
+    .slider-controls { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 24px; }
+    .snav-btn { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--border); background: var(--white); cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; color: var(--slate); transition: all .2s; flex-shrink: 0; line-height: 1; }
+    .snav-btn:hover { border-color: var(--green); color: var(--green-text); box-shadow: 0 4px 12px rgba(123,192,75,0.25); }
+    .slider-dots { display: flex; gap: 8px; align-items: center; }
+    .sdot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); border: none; cursor: pointer; padding: 0; transition: all .3s; }
+    .sdot.active { background: var(--green); width: 28px; border-radius: 4px; }
+    .slide-counter { font-size: 0.8rem; color: var(--gray); font-weight: 600; min-width: 36px; text-align: center; }
+
+    /* ─── IDEAL FIT ─── */
+    .ideal { background: var(--gray-light); }
+    .ideal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .ideal-card {
+      background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius);
+      padding: 28px 30px; display: flex; gap: 16px; align-items: flex-start; transition: .2s; cursor: pointer;
+    }
+    .ideal-card:hover { border-color: var(--green); box-shadow: var(--shadow); }
+    .ideal-icon { font-size: 1.6rem; min-width: 40px; }
+    .ideal-card h4 { font-size: 0.98rem; font-weight: 700; margin-bottom: 6px; }
+    .ideal-card p { font-size: 0.87rem; color: var(--gray); }
+
+    /* ─── OBJECTION HANDLER ─── */
+    .objections { background: var(--white); }
+    .obj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 60px; }
+    .obj-card { border: 1.5px solid var(--border); border-radius: var(--radius); padding: 28px; }
+    .obj-card .q { font-size: 0.85rem; color: var(--gray); margin-bottom: 10px; font-style: italic; }
+    .obj-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--green-dark); margin-bottom: 8px; }
+    .obj-card p { font-size: 0.87rem; color: var(--slate); line-height: 1.6; }
+
+    /* ─── INLINE CTA SECTION ─── */
+    .inline-cta { background: linear-gradient(145deg, var(--navy) 0%, #0f2840 100%); padding: 96px 40px; }
+    .inline-cta-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+    .inline-cta h2 { font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 900; color: var(--white); margin-bottom: 18px; line-height: 1.15; }
+    .inline-cta h2 em { color: var(--green); font-style: normal; }
+    .inline-cta p { color: rgba(255,255,255,0.68); font-size: 1rem; margin-bottom: 36px; }
+    .cta-capture { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); border-radius: 14px; padding: 8px 8px 8px 24px; display: flex; align-items: center; gap: 10px; max-width: 480px; margin: 0 auto 14px; }
+    .cta-capture input { flex: 1; background: transparent; border: none; outline: none; color: white; font-size: 0.92rem; font-family: 'Inter', sans-serif; }
+    .cta-capture input::placeholder { color: rgba(255,255,255,0.4); }
+    .cta-micro { font-size: 0.75rem; color: rgba(255,255,255,0.4); text-align: center; }
+    .trust-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+    .trust-item { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; color: rgba(255,255,255,0.55); font-weight: 500; }
+    .trust-item .t-icon { color: var(--green); font-size: 0.9rem; }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--navy); padding: 64px 40px 32px; }
+    .footer-inner { max-width: 1160px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand img { height: 36px; margin-bottom: 16px; filter: brightness(10); }
+    .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.86rem; line-height: 1.7; max-width: 250px; }
+    .footer-badges { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
+    .fbadge { display: inline-flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.65); font-size: 0.72rem; font-weight: 600; padding: 4px 9px; border-radius: 100px; }
+    .footer-col h4 { color: var(--white); font-size: 0.88rem; font-weight: 700; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.86rem; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--green); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-bottom p { color: rgba(255,255,255,0.35); font-size: 0.8rem; }
+
+    /* ─── STICKY MOBILE BAR ─── */
+    .sticky-bar {
+      display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: var(--navy); border-top: 1px solid rgba(255,255,255,0.15);
+      padding: 14px 20px; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .sticky-bar p { font-size: 0.82rem; color: rgba(255,255,255,0.75); font-weight: 600; }
+    .sticky-bar .btn { font-size: 0.85rem; padding: 10px 22px; }
+
+    /* ─── LIVE CHAT ─── */
+    .chat-bubble {
+      position: fixed; bottom: 28px; right: 28px; z-index: 300;
+      width: 56px; height: 56px; background: var(--green); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      box-shadow: 0 8px 24px rgba(123,192,75,0.5); transition: .2s;
+      font-size: 1.4rem;
+    }
+    .chat-bubble:hover { transform: scale(1.1); }
+    .chat-tooltip {
+      position: fixed; bottom: 96px; right: 28px; z-index: 300;
+      background: var(--white); border-radius: 12px; padding: 16px 20px;
+      box-shadow: var(--shadow-lg); max-width: 220px;
+      font-size: 0.85rem; color: var(--navy); font-weight: 600;
+      border: 1px solid var(--border);
+    }
+    .chat-tooltip::after {
+      content: ''; position: absolute; bottom: -8px; right: 24px;
+      width: 16px; height: 16px; background: var(--white);
+      border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      transform: rotate(45deg);
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 60px 20px 56px; }
+      section { padding: 64px 20px; }
+      .hiw-grid, .action-inner { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .proof-grid { grid-template-columns: repeat(2, 1fr); }
+      .ideal-grid { grid-template-columns: 1fr; }
+      /* Tablet: 2 cards visible */
+      .slider-track .video-card { flex: 0 0 calc((100% - 24px) / 2); }
+      .video-author-bar { padding: 12px 14px; }
+      .video-author-photo { width: 48px; height: 48px; }
+      .obj-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .sticky-bar { display: flex; }
+      .chat-bubble { bottom: 88px; }
+    }
+    @media (max-width: 600px) {
+      .proof-grid { grid-template-columns: 1fr; }
+      /* Mobile: 1 card visible */
+      .slider-track .video-card { flex: 0 0 100%; }
+    }
+    @media (max-width: 480px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .hero-capture { flex-direction: column; padding: 16px; border-radius: 12px; }
+      .hero-capture input { width: 100%; }
+      .hero-capture .btn { width: 100%; justify-content: center; }
+    }
+
+    /* ─── ISO 27001 SECURITY BADGE ─── */
+    .tbadge-iso27 { background: linear-gradient(135deg,#1e3a5f,#0f2340); border-color: #2d5a9f; flex-direction: column; padding: 8px 12px; min-width: 62px; text-align: center; }
+    .iso27-top { font-size: 0.55rem; font-weight: 900; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: .07em; }
+    .iso27-num { font-size: 0.82rem; font-weight: 900; color: #7dd3fc; line-height: 1; }
+    .iso27-tag { font-size: 0.5rem; font-weight: 800; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: .04em; margin-top: 2px; }
+    .iso27-sub { font-size: 0.47rem; font-weight: 700; color: #93c5fd; letter-spacing: .03em; margin-top: 1px; }
+    /* ─── ISO 9001 QUALITY BADGE ─── */
+    .tbadge-iso9 { background: linear-gradient(135deg,#064e3b,#065f46); border-color: #059669; flex-direction: column; padding: 8px 12px; min-width: 62px; text-align: center; }
+    .iso9-top { font-size: 0.55rem; font-weight: 900; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: .07em; }
+    .iso9-num { font-size: 0.82rem; font-weight: 900; color: #6ee7b7; line-height: 1; }
+    .iso9-tag { font-size: 0.5rem; font-weight: 800; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: .04em; margin-top: 2px; }
+    .iso9-sub { font-size: 0.47rem; font-weight: 700; color: #a7f3d0; letter-spacing: .03em; margin-top: 1px; }
+
+    /* ─── URGENCY BAR ─── */
+    .urgency-bar { background: #7f1d1d; border-bottom: 2px solid #b91c1c; padding: 10px 40px; text-align: center; }
+    .urgency-bar-inner { display: inline-flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .ub-msg { font-size: 0.82rem; color: #fca5a5; font-weight: 600; }
+    .ub-amount { font-size: 0.88rem; font-weight: 900; color: #fff; background: rgba(0,0,0,0.3); padding: 2px 9px; border-radius: 5px; font-variant-numeric: tabular-nums; }
+    .ub-cta { font-size: 0.8rem; color: #fde68a; font-weight: 800; text-decoration: underline; white-space: nowrap; }
+
+    /* ─── HERO INLINE TRUST ─── */
+    .hero-trust-inline { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 16px 0 20px; }
+    .hti-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.8); font-size: 0.76rem; font-weight: 700; padding: 5px 13px; border-radius: 100px; }
+    .hti-stars { color: #f59e0b; font-size: 0.68rem; letter-spacing: -0.5px; }
+
+    /* ─── 3-STEP SIGNUP PREVIEW ─── */
+    .signup-steps { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 4px 0 24px; flex-wrap: wrap; }
+    .ss-step { display: flex; align-items: center; gap: 7px; font-size: 0.76rem; color: rgba(255,255,255,0.5); font-weight: 500; }
+    .ss-arr { color: rgba(255,255,255,0.22); font-size: 0.85rem; }
+    .ss-num { width: 20px; height: 20px; border-radius: 50%; background: var(--green); color: #fff; font-size: 0.65rem; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    /* ─── HERO CUSTOMER BAR ─── */
+    .hero-customer-bar { margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .hcb-label { font-size: 0.69rem; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: .14em; margin-bottom: 12px; }
+    .hcb-chips { display: flex; gap: 9px; justify-content: center; flex-wrap: wrap; }
+    .hcb-chip { font-size: 0.74rem; font-weight: 600; color: rgba(255,255,255,0.52); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.11); padding: 5px 13px; border-radius: 100px; }
+
+    /* ─── POST-SLIDER CTA ─── */
+    .post-slider-cta { background: linear-gradient(135deg, #0d1f2d 0%, #0f2840 100%); border-radius: 18px; padding: 40px 48px; margin-top: 36px; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; border: 1.5px solid rgba(123,192,75,0.25); }
+    .psc-left h3 { font-size: 1.45rem; font-weight: 900; color: var(--white); margin-bottom: 8px; line-height: 1.2; }
+    .psc-left p { font-size: 0.9rem; color: rgba(255,255,255,0.62); max-width: 420px; }
+    .psc-right { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+    .psc-right .btn-xl { min-width: 240px; justify-content: center; }
+    .psc-micro { font-size: 0.72rem; color: rgba(255,255,255,0.36); text-align: right; }
+
+    /* ─── PULL QUOTES ─── */
+    .pullquote-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
+    .pq-item { background: var(--green-xlight); border: 1.5px solid var(--green-light); border-radius: 12px; padding: 20px 22px; }
+    .pq-text { font-size: 0.92rem; color: var(--navy); font-weight: 700; line-height: 1.55; margin-bottom: 10px; padding-left: 22px; position: relative; }
+    .pq-text::before { content: '"'; position: absolute; left: 0; top: -6px; color: var(--green-dark); font-size: 2rem; line-height: 1; }
+    .pq-name { font-size: 0.76rem; color: var(--gray); font-weight: 600; }
+
+    /* ─── VIDEO TESTIMONIAL TEASER ─── */
+    .video-testimonial-teaser { background: var(--navy); padding: 56px 40px; }
+    .vtt-inner { max-width: 860px; margin: 0 auto; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; justify-content: center; }
+    .vtt-play { flex-shrink: 0; }
+    .vtt-btn { display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: var(--green); border-radius: 50%; text-decoration: none; box-shadow: 0 0 0 12px rgba(123,192,75,0.2); transition: .2s; }
+    .vtt-btn:hover { transform: scale(1.07); }
+    .vtt-play-icon { color: var(--navy); font-size: 1.6rem; margin-left: 4px; }
+    .vtt-copy { max-width: 560px; }
+    .vtt-quote { font-size: 1.1rem; font-style: italic; color: rgba(255,255,255,0.9); line-height: 1.6; margin-bottom: 12px; }
+    .vtt-attr { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-bottom: 14px; }
+    .vtt-attr strong { color: #4ade80; }
+    .vtt-watch { font-size: 0.88rem; color: var(--green); text-decoration: none; font-weight: 700; }
+
+    @media (max-width: 900px) {
+      .urgency-bar { padding: 10px 16px; }
+      .post-slider-cta { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
+      .psc-right { align-items: flex-start; width: 100%; }
+      .psc-right .btn-xl { min-width: 0; width: 100%; }
+      .psc-micro { text-align: left; }
+      .pullquote-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar" id="annBar">
+  🎉 Limited offer: Connect AWS in under 60 seconds — your first month free. <a href="pricing.html">Start now →</a>
+  <button class="ann-close" onclick="document.getElementById('annBar').style.display='none'" aria-label="Close announcement">✕</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/costsage_ai_project_logos_cost-sage-logo-dark-01-300x65.png" alt="CostSage"/></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <div class="nav-cta">
+    <span class="nav-savings">Avg saves $61K/mo</span>
+    <a href="https://app.costsage.ai/" target="_blank" rel="noopener" class="btn btn-ghost" style="padding:9px 18px;font-size:0.85rem;">Log In</a>
+    <a href="pricing.html" class="btn btn-primary" style="padding:10px 20px;font-size:0.88rem;">Start Free Trial →</a>
+  </div>
+</nav>
+
+<!-- URGENCY BAR -->
+<div class="urgency-bar">
+  <div class="urgency-bar-inner">
+    <span class="ub-msg">💸 Teams on a $50K/mo cloud bill waste an average of <span class="ub-amount">$583/day</span> in unoptimised cloud spend.</span>
+    <span class="ub-msg">Every day you wait is money left on the table.</span>
+    <a href="pricing.html" class="ub-cta">Start free today →</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero-form">
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="dot"></span> Agentic AI for FinOps — not a dashboard, not a copilot. An agent that acts.</div>
+    <h1>Your cloud bill is hiding<br/><em>thousands.</em> We find them.</h1>
+    <p class="hero-sub">CostSage is an Agentic AI system for FinOps. It reasons across your entire AWS &amp; Azure infrastructure, plans multi-step cost optimisations, and executes approved savings autonomously — 24/7, without engineer time.</p>
+
+    <form class="hero-capture" id="heroForm" onsubmit="csSubmit(this,'heroEmail');return false;">
+      <input type="email" id="heroEmail" placeholder="Enter your work email" autocomplete="email" required aria-label="Work email address"/>
+      <button type="submit" class="btn btn-primary btn-large">Start Free Trial →</button>
+    </form>
+    <p class="hero-micro">Free 14-day trial · No credit card · 60-sec setup · Cancel anytime</p>
+
+    <!-- Inline trust badges — above the fold -->
+    <div class="hero-trust-inline">
+      <span class="hti-badge">👥 500+ teams · Avg $61K/mo saved</span>
+      <span class="hti-badge">🤖 ISO 42001 AI Certified</span>
+      <span class="hti-badge">🛡️ ISO 27001 Security</span>
+      <span class="hti-badge">✅ ISO 9001 Quality</span>
+      <span class="hti-badge">☁️ AWS Partner Network</span>
+    </div>
+
+    <!-- 3-step signup preview — reduces sign-up anxiety -->
+    <div class="signup-steps">
+      <div class="ss-step"><span class="ss-num">1</span> Enter email</div>
+      <span class="ss-arr">→</span>
+      <div class="ss-step"><span class="ss-num">2</span> Connect AWS / Azure</div>
+      <span class="ss-arr">→</span>
+      <div class="ss-step"><span class="ss-num">3</span> See first savings in &lt;60s</div>
+    </div>
+
+    <p class="hero-unique-claim">The only <em>Agentic AI</em> built for cloud FinOps. It reasons across your infrastructure, plans the fix, and <em>executes</em> it — with your approval, 24/7.</p>
+
+    <a class="hero-demo-link" href="https://www.youtube.com/watch?v=GWRw-qED7Q4" target="_blank" rel="noopener">
+      <span class="play-icon">▶</span> Watch 2-min demo — see a real $61K recommendation get approved
+    </a>
+
+    <!-- Customer logo bar -->
+    <div class="hero-logo-bar">
+      <div class="hlb-label">Trusted by teams at</div>
+      <div class="hlb-logos">
+        <span class="hlb-logo">Vulcan Forged</span>
+        <span class="hlb-logo">Series B SaaS · $420K/mo</span>
+        <span class="hlb-logo">E-Commerce Platform</span>
+        <span class="hlb-logo">Enterprise DevOps</span>
+        <span class="hlb-logo">Growth-Stage FinTech</span>
+      </div>
+    </div>
+
+    <div class="hero-proof">
+      <div class="proof-item"><div class="proof-num">$61K+</div><div class="proof-label">Avg. savings found / month</div></div>
+      <div class="proof-item"><div class="proof-num">&lt;60s</div><div class="proof-label">To your first recommendation</div></div>
+      <div class="proof-item"><div class="proof-num">35%</div><div class="proof-label">Avg cloud waste eliminated</div></div>
+      <div class="proof-item"><div class="proof-num">500+</div><div class="proof-label">Engineering teams trust us</div></div>
+    </div>
+
+    <!-- Customer industry bar -->
+    <div class="hero-customer-bar">
+      <div class="hcb-label">Trusted by 500+ engineering teams across</div>
+      <div class="hcb-chips">
+        <span class="hcb-chip">🎮 Gaming &amp; Web3</span>
+        <span class="hcb-chip">💳 FinTech SaaS</span>
+        <span class="hcb-chip">🛒 E-Commerce Platforms</span>
+        <span class="hcb-chip">🏢 Enterprise DevOps</span>
+        <span class="hcb-chip">🚀 Growth-stage Startups</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE STRIP — risk removal above the fold -->
+<div class="homepage-guarantee">
+  <div class="hg-inner">
+    <span class="hg-shield">🛡️</span>
+    <div class="hg-text">
+      <strong>30-Day Savings Guarantee</strong>
+      <span>If CostSage doesn't identify at least <strong>2× your subscription cost</strong> in savings within 30 days, we refund your first month. No questions asked.</span>
+    </div>
+    <a href="pricing.html" class="hg-link">See pricing →</a>
+  </div>
+</div>
+
+<!-- TRUST BADGE STRIP -->
+<div class="trust-strip">
+  <div class="trust-strip-inner">
+    <div class="trust-label">Trusted. Verified. Secured.</div>
+    <div class="trust-badges">
+
+      <!-- AWS Partner Network -->
+      <div class="tbadge tbadge-aws">
+        <img src="assets/costsage_ai_project_product_images_aws-logo.png" alt="AWS"/>
+        <div class="aws-text">
+          <span>partner</span>
+          <span class="aws-sub">network</span>
+        </div>
+      </div>
+
+      <!-- AWS Buy on AWS -->
+      <div class="tbadge tbadge-aws">
+        <img src="assets/costsage_ai_project_product_images_aws-logo.png" alt="AWS"/>
+        <div class="aws-text">
+          <span>buy on</span>
+          <span class="aws-sub">AWS</span>
+        </div>
+      </div>
+
+      <!-- ISO 42001 AI -->
+      <div class="tbadge tbadge-iso42" title="ISO/IEC 42001:2023 — World's first AI Management System Standard">
+        <div class="iso42-top">ISO / IEC</div>
+        <div class="iso42-num">42001</div>
+        <div class="iso42-tag">AI Mgmt Sys</div>
+        <div class="iso42-ribbon">★ FIRST GLOBAL ★</div>
+      </div>
+
+      <!-- ISO 27001 Security -->
+      <div class="tbadge tbadge-iso27" title="ISO/IEC 27001:2022 — Information Security Management System">
+        <div class="iso27-top">ISO / IEC</div>
+        <div class="iso27-num">27001</div>
+        <div class="iso27-tag">Info Security</div>
+        <div class="iso27-sub">2022 Certified</div>
+      </div>
+
+      <!-- ISO 9001 Quality -->
+      <div class="tbadge tbadge-iso9" title="ISO 9001:2015 — Quality Management System">
+        <div class="iso9-top">ISO</div>
+        <div class="iso9-num">9001</div>
+        <div class="iso9-tag">Quality Mgmt</div>
+        <div class="iso9-sub">2015 Certified</div>
+      </div>
+
+      <!-- G2 -->
+      <a href="https://www.g2.com/products/costsage/reviews" target="_blank" rel="noopener" style="text-decoration:none;">
+      <div class="tbadge tbadge-g2">
+        <div class="g2-logo">G²</div>
+        <div class="g2-stars">★★★★★</div>
+        <div class="g2-text">5/5 · High Performer</div>
+      </div>
+      </a>
+
+      <!-- Capterra -->
+      <div class="tbadge tbadge-capterra">
+        <div class="cap-logo">Capterra</div>
+        <div class="cap-arrow">▶ Top Rated</div>
+        <div class="cap-text">2025</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- HOW IT WORKS -->
+<section class="hiw">
+  <div class="container">
+    <div class="savings-ticker">
+      <div class="ticker-left">
+        <div class="ticker-icon">💰</div>
+        <div class="ticker-text">
+          <strong>CostSage just identified $61,898/month in RDS savings for Vulcan Forged</strong>
+          <span>Rightsizing db.r6g.4xlarge → db.r6g.2xlarge · Approved in 1 click · Saved in 24 hours</span>
+        </div>
+      </div>
+      <div class="ticker-right"><a href="blog.html" class="btn btn-navy" style="font-size:0.82rem;padding:9px 18px;">Read the case study →</a></div>
+    </div>
+
+    <div class="hiw-grid">
+      <div>
+        <div class="chip">How It Works</div>
+        <h2 class="section-title">From connected to saving<br/>in under 60 seconds</h2>
+        <p class="section-sub" style="margin-bottom:36px;">Most tools give you charts. Copilots give you suggestions. CostSage is Agentic AI — it reasons across your infrastructure, plans the fix, executes it, and monitors the result. Autonomously.</p>
+        <div class="hiw-steps">
+          <div class="hiw-step active">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Connect your cloud (read-only, 3 minutes)</h4>
+              <p>Secure IAM role or Azure RBAC. No agents, no code changes, no infra risk. Takes 3 minutes.</p>
+            </div>
+          </div>
+          <div class="hiw-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Agent analyses everything, surfaces savings</h4>
+              <p>Rightsizing, idle resources, RI/SP gaps, waste — all found automatically with justifications and confidence scores.</p>
+            </div>
+          </div>
+          <div class="hiw-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>You approve. Agent executes. Savings stack.</h4>
+              <p>Click Approve. The agent handles the change safely, with automatic rollback protection and a full audit trail.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px;">
+          <a href="pricing.html" class="btn btn-primary btn-large">Find My Savings →</a>
+          <span style="font-size:0.8rem;color:var(--gray);margin-left:14px;">Free 14-day trial · No credit card</span>
+        </div>
+      </div>
+      <div class="hiw-visual">
+        <img src="assets/costsage_ai_project_product_images_Group-1171275139@2x.png" alt="AI Recommendations Dashboard" loading="lazy"/>
+        <div class="savings-callout">
+          <div>
+            <div class="amount">$61,898</div>
+            <div class="label">identified this month</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:52px;">
+      <div class="chip">Agent Capabilities</div>
+      <h2 class="section-title">Every dollar saved, fully automated</h2>
+      <p class="section-sub" style="max-width:540px;margin:0 auto 16px;">Stop asking engineers to chase cloud waste. CostSage runs the FinOps playbook 24/7 so your team focuses on shipping.</p>
+      <div class="feature-strip">
+        <span>No engineer time needed</span>
+        <span>Runs continuously, 24/7</span>
+        <span>Full audit trail &amp; auto-rollback</span>
+      </div>
+    </div>
+    <div class="features-grid">
+
+      <div class="feature-card fc-highlight">
+        <span class="fc-badge">🔥 Most Used</span>
+        <div class="feature-icon">🤖</div>
+        <h3>AI Rightsizing</h3>
+        <span class="fc-metric">Avg. 34% reduction in compute costs</span>
+        <p>90-day CPU/memory baselines drive high-confidence downsizing for EC2, RDS, and Azure compute — with zero guesswork.</p>
+        <a href="features.html" class="learn">See how it works →</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>One-Click Execution</h3>
+        <span class="fc-metric">Safe · Audited · Auto-reversible</span>
+        <p>Approve a fix and the agent applies it. Every change is logged, and performance is monitored — automatic rollback if anything dips.</p>
+        <a href="features.html" class="learn">See how it works →</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>RI / SP Optimisation</h3>
+        <span class="fc-metric">Up to 72% cheaper than on-demand</span>
+        <p>Find uncovered on-demand usage that should be reserved. Recommendations are matched to your actual traffic patterns, not averages.</p>
+        <a href="features.html" class="learn">See how it works →</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Idle Resource Detection</h3>
+        <span class="fc-metric">Flags waste before it hits your bill</span>
+        <p>Resources running below 5% CPU for 30+ days are surfaced automatically — before the next invoice, not after.</p>
+        <a href="features.html" class="learn">See how it works →</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏷️</div>
+        <h3>Tagging Enforcement</h3>
+        <span class="fc-metric">100% resource attribution</span>
+        <p>Agent identifies untagged resources, enforces your tagging policy, and maps every dollar of spend to the right team or project.</p>
+        <a href="features.html" class="learn">See how it works →</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3>Cost Forecasting</h3>
+        <span class="fc-metric">Board-ready reports in 1 click</span>
+        <p>AI-generated spend forecasts, per-service breakdowns, and trend reports your CFO will actually read — shareable in seconds.</p>
+        <a href="features.html" class="learn">See how it works →</a>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <a href="features.html" class="btn btn-primary btn-large">Explore All Features →</a>
+      <span style="font-size:0.85rem;color:var(--gray);margin-left:16px;">Or <a href="pricing.html" style="color:var(--green-text);font-weight:700;text-decoration:none;">start saving today — free trial, no card required</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- ACTION PREVIEW -->
+<section class="action-preview">
+  <div class="action-inner">
+    <div class="action-text">
+      <div class="chip">Action Execution</div>
+      <h2 class="section-title">One click. Agent handles the rest.</h2>
+      <p class="section-sub">No Jira tickets. No console sessions. No manual scripts. Review each recommendation with its full justification — then approve. The agent does the work.</p>
+      <div class="action-bullets">
+        <div class="action-bullet"><div class="ck">✓</div><p>Full justification with CPU usage, cost delta, and confidence score before you approve</p></div>
+        <div class="action-bullet"><div class="ck">✓</div><p>Snooze or ignore recommendations — you're always in control</p></div>
+        <div class="action-bullet"><div class="ck">✓</div><p>Automatic rollback if post-change performance degrades</p></div>
+        <div class="action-bullet"><div class="ck">✓</div><p>Complete audit trail: who approved, when, what changed, how much saved</p></div>
+      </div>
+      <a href="pricing.html" class="btn btn-primary btn-large">Start Free Trial — No Card →</a>
+    </div>
+    <div class="action-img">
+      <img src="assets/costsage_ai_project_product_images_Group-1171275177.png" alt="Agent Execution Screenshot" loading="lazy"/>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO TESTIMONIALS -->
+<section class="proof">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:52px;">
+      <div class="chip">Customer Stories</div>
+      <h2 class="section-title">Hear it from teams that made the switch</h2>
+      <p class="section-sub" style="max-width:480px;margin:0 auto;">Real FinOps wins, in their own words. See exactly what CostSage found — and what it meant for their cloud bills.</p>
+    </div>
+    <!-- SLIDER -->
+    <div class="testimonial-slider">
+      <div class="slider-viewport">
+        <div class="slider-track" id="testimTrack">
+
+          <!-- SLIDE 1: Jill Marshal — CTO, Tech Maze -->
+          <div class="video-card">
+            <div class="video-wrapper">
+              <div class="video-overlay-badge">⚡ Setup in under 60 seconds</div>
+              <video controls preload="none" poster="assets/costsage_ai_project_product_images_jill-marshal-cto.jpg">
+                <source src="https://costsage.ai/wp-content/uploads/2025/12/jill-marshal.mp4" type="video/mp4"/>
+              </video>
+            </div>
+            <div class="video-author-bar">
+              <img class="video-author-photo" src="assets/costsage_ai_project_product_images_jill-marshal-cto.jpg" alt="Jill Marshal"/>
+              <div>
+                <div class="video-author-name">Jill Marshal</div>
+                <div class="video-author-title">CTO, Tech Maze</div>
+                <span class="video-author-stars">★★★★★</span>
+              </div>
+            </div>
+            <div class="video-quote-strip">
+              <p>"Getting started with CostSage took us less than 60 seconds"</p>
+            </div>
+          </div>
+
+          <!-- SLIDE 2: Mike — CEO, Apex Logics -->
+          <div class="video-card">
+            <div class="video-wrapper">
+              <div class="video-overlay-badge">💰 Immediate cost visibility</div>
+              <video controls preload="none" poster="assets/costsage_ai_project_product_images_mike.jpg">
+                <source src="https://costsage.ai/wp-content/uploads/2025/12/mike-video.mp4" type="video/mp4"/>
+              </video>
+            </div>
+            <div class="video-author-bar">
+              <img class="video-author-photo" src="assets/costsage_ai_project_product_images_mike.jpg" alt="Mike"/>
+              <div>
+                <div class="video-author-name">Mike</div>
+                <div class="video-author-title">CEO, Apex Logics</div>
+                <span class="video-author-stars">★★★★★</span>
+              </div>
+            </div>
+            <div class="video-quote-strip">
+              <p>"Immediate visibility into our wasted AWS spend"</p>
+            </div>
+          </div>
+
+          <!-- SLIDE 3: Jack — Cloud Architect, Infra Tech -->
+          <div class="video-card">
+            <div class="video-wrapper">
+              <div class="video-overlay-badge">💰 AWS bill dropped 52%</div>
+              <video controls preload="none" poster="https://costsage.ai/wp-content/uploads/2025/12/jack.jpg">
+                <source src="https://costsage.ai/wp-content/uploads/2025/12/jack-video.mp4" type="video/mp4"/>
+              </video>
+            </div>
+            <div class="video-author-bar">
+              <img class="video-author-photo" src="https://costsage.ai/wp-content/uploads/2025/12/jack.jpg" alt="Jack"/>
+              <div>
+                <div class="video-author-name">Jack</div>
+                <div class="video-author-title">Cloud Architect, Infra Tech</div>
+                <span class="video-author-stars">★★★★★</span>
+              </div>
+            </div>
+            <div class="video-quote-strip">
+              <p>"Our monthly AWS bill dropped by around 52%"</p>
+            </div>
+          </div>
+
+          <!-- SLIDE 4: Bobby — CEO, NovoStack Lab -->
+          <div class="video-card">
+            <div class="video-wrapper">
+              <div class="video-overlay-badge">✅ 1-click approval workflow</div>
+              <video controls preload="none" poster="https://costsage.ai/wp-content/uploads/2025/12/boby.jpg">
+                <source src="https://costsage.ai/wp-content/uploads/2025/12/bobby-video.mp4" type="video/mp4"/>
+              </video>
+            </div>
+            <div class="video-author-bar">
+              <img class="video-author-photo" src="https://costsage.ai/wp-content/uploads/2025/12/boby.jpg" alt="Bobby"/>
+              <div>
+                <div class="video-author-name">Bobby</div>
+                <div class="video-author-title">CEO, NovoStack Lab</div>
+                <span class="video-author-stars">★★★★★</span>
+              </div>
+            </div>
+            <div class="video-quote-strip">
+              <p>"We approved fixes in 1 click, and CostSage took care of the rest."</p>
+            </div>
+          </div>
+
+        </div><!-- /slider-track -->
+      </div><!-- /slider-viewport -->
+
+      <!-- CONTROLS -->
+      <div class="slider-controls">
+        <button class="snav-btn" onclick="prevTestim()" aria-label="Previous testimonial">&#8592;</button>
+        <div class="slider-dots" id="sliderDots"></div>
+        <span class="slide-counter" id="slideCounter">1 / 2</span>
+        <button class="snav-btn" onclick="nextTestim()" aria-label="Next testimonial">&#8594;</button>
+      </div>
+
+    </div><!-- /testimonial-slider -->
+
+    <!-- Post-testimonial CTA — strike while intent is high -->
+    <div class="post-slider-cta">
+      <div class="psc-left">
+        <h3>Ready to find your hidden savings?</h3>
+        <p>These teams found real money within hours of connecting. Start your free trial — see your first recommendation in under 60 seconds.</p>
+      </div>
+      <div class="psc-right">
+        <a href="pricing.html" class="btn btn-primary btn-xl">Start Free Trial — No Card →</a>
+        <span class="psc-micro">Free 14-day trial · No credit card · Cancel anytime</span>
+      </div>
+    </div>
+
+    <!-- VIDEO TESTIMONIAL PLACEHOLDER -->
+    <div class="video-testimonial-teaser">
+      <div class="vtt-inner">
+        <div class="vtt-play">
+          <a href="https://www.youtube.com/watch?v=GWRw-qED7Q4" target="_blank" rel="noopener" class="vtt-btn">
+            <span class="vtt-play-icon">▶</span>
+          </a>
+        </div>
+        <div class="vtt-copy">
+          <p class="vtt-quote">"Within 48 hours of connecting our AWS account, CostSage had identified $61,898 in monthly savings. We approved the first batch in 15 minutes."</p>
+          <div class="vtt-attr">— CTO, Vulcan Forged · <strong>$61,898/mo saved</strong></div>
+          <a href="https://www.youtube.com/watch?v=GWRw-qED7Q4" target="_blank" rel="noopener" class="vtt-watch">▶ Watch the 3-min walkthrough</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pull-quote highlights — written proof from real customers -->
+    <div class="pullquote-row">
+      <div class="pq-item">
+        <p class="pq-text">Cut our AWS bill from $84K to $25K in one month — without touching a single line of code.</p>
+        <div class="pq-name">Kostantinos A., CTO — Vulcan Forged</div>
+      </div>
+      <div class="pq-item">
+        <p class="pq-text">I was skeptical any AI tool could safely execute changes. CostSage proved me wrong inside 48 hours with a full audit trail.</p>
+        <div class="pq-name">Lead Cloud Architect, Series B SaaS</div>
+      </div>
+      <div class="pq-item">
+        <p class="pq-text">We'd been meaning to rightsize our RDS instances for months. CostSage did it in an afternoon — with one-click approval.</p>
+        <div class="pq-name">VP Engineering, E-Commerce Platform</div>
+      </div>
+    </div>
+
+    <!-- Case study pull-out -->
+    <div style="background:var(--green-xlight);border:1.5px solid var(--green-light);border-radius:14px;padding:28px 36px;margin-top:36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--green-dark);margin-bottom:6px;">Featured Case Study</div>
+        <p style="font-size:1rem;font-weight:700;color:var(--navy);margin:0;">How Vulcan Forged cut their AWS bill from <span style="color:#d92d20;text-decoration:line-through;">$84,000</span> to <span style="color:var(--green-dark);">$25,000/month</span> with CostSage</p>
+      </div>
+      <a href="blog.html" class="btn btn-primary" style="white-space:nowrap;">Read Case Study →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- IDEAL FIT -->
+<section class="ideal">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="chip">Who It's For</div>
+      <h2 class="section-title">Built for teams that take cloud spend seriously</h2>
+      <p class="section-sub" style="max-width:500px;margin:0 auto;">Whether you're a startup watching every dollar or an enterprise managing multi-cloud at scale — CostSage has you covered.</p>
+    </div>
+    <div class="ideal-grid">
+      <div class="ideal-card"><div class="ideal-icon">🚀</div><div><h4>SaaS Companies</h4><p>Cloud infra is your #1 COGS line. <strong>CTO view:</strong> Stop cloud surprises in your board pack. Let the agent find every dollar of waste before your next funding round.</p></div></div>
+      <div class="ideal-card"><div class="ideal-icon">👩‍💻</div><div><h4>Engineering Teams Without a FinOps Hire</h4><p><strong>VP Eng view:</strong> One dashboard, one weekly approval, zero overruns. CostSage fills the FinOps role — so your engineers ship product, not cost reports.</p></div></div>
+      <div class="ideal-card"><div class="ideal-icon">🏢</div><div><h4>Enterprise FinOps Teams</h4><p><strong>FinOps Lead view:</strong> Automate the manual analysis grind. Focus on governance, chargeback strategy, and executive reporting while the agent handles the rest.</p></div></div>
+      <div class="ideal-card"><div class="ideal-icon">⚙️</div><div><h4>DevOps & Platform Teams</h4><p><strong>DevOps view:</strong> Recommendations in Slack. Approve in one click. No custom tooling, no dashboards to maintain, no tickets to file.</p></div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="pricing.html" class="btn btn-primary btn-large">Find My Savings →</a>
+      <p style="font-size:0.78rem;color:var(--gray);margin-top:10px;">Free 14-day trial · No credit card · 60-sec setup · Cancel anytime</p>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIONS -->
+<section class="objections">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:44px;">
+      <div class="chip">Before You Decide</div>
+      <h2 class="section-title">Answers to the questions holding you back</h2>
+    </div>
+    <div class="obj-grid">
+      <div class="obj-card">
+        <p class="q">"What if I don't trust the AI recommendations?"</p>
+        <h4>Every recommendation is fully justified</h4>
+        <p>CostSage shows you the exact data behind each suggestion — CPU utilization, cost delta, confidence score, and step-by-step impact analysis. Nothing gets executed without your explicit approval.</p>
+      </div>
+      <div class="obj-card">
+        <p class="q">"Is it safe to connect my cloud account?"</p>
+        <h4>Read-only by default. Execution is minimal-permission.</h4>
+        <p>Analysis requires only read-only billing access. Execution roles are scoped to the minimum permissions needed for each action type. CostSage is built on three international standards: <strong>ISO/IEC 42001:2023</strong> (AI Management), <strong>ISO/IEC 27001:2022</strong> (Information Security), and <strong>ISO 9001:2015</strong> (Quality Management) — independently certified, auditable, and built for enterprise trust.</p>
+      </div>
+      <div class="obj-card">
+        <p class="q">"We don't have time to manage another tool."</p>
+        <h4>That's exactly why we built CostSage as an agent.</h4>
+        <p>You don't manage CostSage — it manages your cloud costs for you. Connect once, receive a weekly digest, approve recommendations as they arrive. Total time: 15 minutes a week.</p>
+      </div>
+    </div>
+
+    <!-- MINI CAPTURE FORM -->
+    <div style="background:var(--green-xlight); border:1.5px solid var(--green-light); border-radius:18px; padding:40px; text-align:center; max-width:600px; margin:0 auto;">
+      <h3 style="font-size:1.4rem;font-weight:800;margin-bottom:8px;">Still not sure? See it yourself.</h3>
+      <p style="color:var(--gray);font-size:0.92rem;margin-bottom:24px;">Connect your cloud account and we'll show you exactly what CostSage finds — for free, in minutes. No obligation to subscribe.</p>
+      <form id="objForm" onsubmit="csSubmit(this,'objEmail');return false;" style="display:flex;gap:10px;max-width:420px;margin:0 auto;flex-wrap:wrap;">
+        <input type="email" id="objEmail" placeholder="your@company.com" required aria-label="Work email address" style="flex:1;padding:13px 18px;border:1.5px solid var(--border);border-radius:8px;font-size:0.9rem;outline:none;font-family:'Inter',sans-serif;min-width:200px;"/>
+        <button type="submit" style="padding:13px 24px;background:var(--green);color:white;border:none;border-radius:8px;font-size:0.9rem;font-weight:700;cursor:pointer;">Start Free Trial →</button>
+      </form>
+      <p style="font-size:0.75rem;color:var(--gray);margin-top:10px;">Free 14-day trial · No credit card · 60-sec setup · Cancel anytime</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="inline-cta">
+  <div class="inline-cta-inner">
+    <div class="chip" style="background:rgba(123,192,75,0.2);color:var(--green);">Get Started Today</div>
+    <h2>Your cloud bill is hiding<br/><em>thousands</em>. Let the agent find them.</h2>
+    <p>Join 500+ engineering teams that let CostSage do the FinOps heavy lifting. Average setup time: under 60 seconds. Average savings found: $61,898/month.</p>
+    <form class="cta-capture" id="ctaForm" onsubmit="csSubmit(this,'ctaEmail');return false;">
+      <input type="email" id="ctaEmail" placeholder="Enter your work email" required aria-label="Work email address"/>
+      <button type="submit" class="btn btn-primary">Start Free Trial →</button>
+    </form>
+    <p class="cta-micro">Free 14-day trial · No credit card · 60-sec setup · Cancel anytime</p>
+    <div class="trust-row">
+      <div class="trust-item"><span class="t-icon">🤖</span> ISO 42001 AI Certified</div>
+      <div class="trust-item"><span class="t-icon">🛡️</span> ISO 27001 Security</div>
+      <div class="trust-item"><span class="t-icon">✅</span> ISO 9001 Quality</div>
+      <div class="trust-item"><span class="t-icon">☁️</span> AWS Partner Network</div>
+      <div class="trust-item"><span class="t-icon">⭐</span> <a href="https://www.g2.com/products/costsage/reviews" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">5★ on G2</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/costsage_ai_project_logos_cost-sage-logo-dark-01-300x65.png" alt="CostSage"/>
+        <p>The Agentic AI for FinOps that reasons, plans, and executes cloud cost savings across AWS and Azure — autonomously, 24/7.</p>
+        <div class="footer-badges">
+          <span class="fbadge">🤖 ISO 42001 AI Certified</span>
+          <span class="fbadge">🛡️ ISO 27001 Security</span>
+          <span class="fbadge">✅ ISO 9001 Quality</span>
+          <span class="fbadge">☁️ AWS Partner</span>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+      <div class="footer-col"><h4>Resources</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="blog.html">Case Studies</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 CostSage AI. All rights reserved.</p>
+      <div style="display:flex;gap:14px;align-items:center;">
+        <img src="assets/costsage_ai_project_product_images_aws-logo.png" alt="AWS" style="height:22px;opacity:0.8;filter:brightness(3)"/>
+        <img src="assets/costsage_ai_project_product_images_azure.png" alt="Azure" style="height:22px;opacity:0.8;filter:brightness(3)"/>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE BAR -->
+<div class="sticky-bar">
+  <p>Start finding savings today — free trial</p>
+  <a href="pricing.html" class="btn btn-primary">Get Started →</a>
+</div>
+
+<!-- CHAT BUBBLE -->
+<div class="chat-tooltip">💬 Questions? Chat with our FinOps team →</div>
+<a class="chat-bubble" href="contact.html" title="Contact our FinOps team">💬</a>
+
+<script>
+
+  // Email capture → send to app signup with email pre-filled
+  function csSubmit(form, inputId) {
+    var input = document.getElementById(inputId);
+    var email = input ? input.value.trim() : '';
+    // Remove any previous error state
+    if (input) { input.style.borderColor = ''; }
+    var errId = inputId + '-err';
+    var existing = document.getElementById(errId);
+    if (existing) existing.remove();
+    // Validate
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      if (input) {
+        input.style.borderColor = '#e53e3e';
+        input.focus();
+        var err = document.createElement('p');
+        err.id = errId;
+        err.style.cssText = 'color:#e53e3e;font-size:0.78rem;margin-top:6px;text-align:left;';
+        err.textContent = email ? "That doesn't look like a valid email — try: you@company.com" : 'Please enter your work email to continue.';
+        input.parentNode.insertBefore(err, input.nextSibling);
+      }
+      return false;
+    }
+    window.location.href = 'https://app.costsage.ai/?email=' + encodeURIComponent(email);
+    return false;
+  }
+
+  // Smooth step highlighting on scroll
+  const steps = document.querySelectorAll('.hiw-step');
+  steps.forEach((step, i) => {
+    step.addEventListener('mouseenter', () => {
+      steps.forEach(s => s.classList.remove('active'));
+      step.classList.add('active');
+    });
+  });
+  // Hide chat tooltip after 4s
+  setTimeout(() => {
+    const tip = document.querySelector('.chat-tooltip');
+    if (tip) tip.style.display = 'none';
+  }, 4000);
+
+  // ── Testimonial Slider (multi-visible) ─────────────
+  (function() {
+    var TOTAL = 4, GAP = 24;
+    var cur = 0, timer;
+    var track   = document.getElementById('testimTrack');
+    var counter = document.getElementById('slideCounter');
+    var dotsWrap = document.getElementById('sliderDots');
+
+    function getVisible() {
+      return window.innerWidth <= 600 ? 1 : window.innerWidth <= 900 ? 2 : 3;
+    }
+    function getMaxPos() { return Math.max(0, TOTAL - getVisible()); }
+
+    function buildDots() {
+      if (!dotsWrap) return;
+      var maxPos = getMaxPos();
+      dotsWrap.innerHTML = '';
+      for (var i = 0; i <= maxPos; i++) {
+        var btn = document.createElement('button');
+        btn.className = 'sdot' + (i === cur ? ' active' : '');
+        btn.setAttribute('aria-label', 'Slide ' + (i + 1));
+        (function(idx) {
+          btn.addEventListener('click', function() { go(idx); stop(); });
+        })(i);
+        dotsWrap.appendChild(btn);
+      }
+    }
+
+    function go(n) {
+      var maxPos = getMaxPos();
+      var totPos = maxPos + 1;
+      cur = ((n % totPos) + totPos) % totPos;
+      cur = Math.min(cur, maxPos);
+      var card = track && track.querySelector('.video-card');
+      var step = card ? (card.offsetWidth + GAP) : 0;
+      if (track) track.style.transform = 'translateX(-' + (cur * step) + 'px)';
+      buildDots();
+      if (counter) counter.textContent = (cur + 1) + ' / ' + totPos;
+    }
+
+    window.goTestim   = go;
+    window.nextTestim = function() { go(cur + 1); };
+    window.prevTestim = function() { go(cur - 1); };
+
+    function start() { timer = setInterval(function() { go(cur + 1); }, 6000); }
+    function stop()  { clearInterval(timer); }
+
+    var vp = document.querySelector('.slider-viewport');
+    if (vp) {
+      vp.addEventListener('mouseenter', stop);
+      vp.addEventListener('mouseleave', start);
+    }
+    document.querySelectorAll('#testimTrack video').forEach(function(v) {
+      v.addEventListener('play',  stop);
+      v.addEventListener('pause', start);
+      v.addEventListener('ended', start);
+    });
+
+    // Touch/swipe
+    var touchStartX = 0;
+    if (track) {
+      track.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, {passive:true});
+      track.addEventListener('touchend',   function(e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) { dx < 0 ? go(cur + 1) : go(cur - 1); stop(); }
+      }, {passive:true});
+    }
+
+    // Recalculate on resize
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        var maxPos = getMaxPos();
+        if (cur > maxPos) cur = maxPos;
+        go(cur);
+      }, 150);
+    });
+
+    // Init
+    buildDots();
+    go(0);
+    start();
+  })();
+</script>
+
+<!-- EXIT INTENT POPUP -->
+<div id="exitPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:20px;padding:48px 40px;max-width:480px;width:90%;text-align:center;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.3);">
+    <button onclick="closeExitPopup()" style="position:absolute;top:16px;right:20px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#9ca3af;">×</button>
+    <div style="font-size:2rem;margin-bottom:12px;">💰</div>
+    <h3 style="font-size:1.4rem;font-weight:800;color:#0f1a2e;margin-bottom:8px;">Before you go — see how much you could save</h3>
+    <p style="color:#6b7280;font-size:0.92rem;margin-bottom:24px;">Teams on a $50K/mo cloud bill typically find $8K–$18K in monthly savings in week one. What's your monthly cloud spend?</p>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;justify-content:center;">
+      <a href="pricing.html?spend=50k" style="padding:10px 18px;background:#f0fdf4;border:2px solid #16a34a;border-radius:8px;font-size:0.85rem;font-weight:700;color:#15803d;text-decoration:none;">$25K–$75K/mo</a>
+      <a href="pricing.html?spend=100k" style="padding:10px 18px;background:#f0fdf4;border:2px solid #16a34a;border-radius:8px;font-size:0.85rem;font-weight:700;color:#15803d;text-decoration:none;">$75K–$200K/mo</a>
+      <a href="pricing.html?spend=200k" style="padding:10px 18px;background:#0f1a2e;border:2px solid #0f1a2e;border-radius:8px;font-size:0.85rem;font-weight:700;color:#fff;text-decoration:none;">$200K+/mo</a>
+    </div>
+    <p style="font-size:0.75rem;color:#9ca3af;">Free 14-day trial · No credit card · 60-sec setup</p>
+  </div>
+</div>
+<script>
+(function(){
+  var shown = false;
+  var dismissed = sessionStorage.getItem('exitDismissed');
+  if(dismissed) return;
+  document.addEventListener('mouseleave', function(e){
+    if(!shown && e.clientY < 20){
+      shown = true;
+      var p = document.getElementById('exitPopup');
+      p.style.display = 'flex';
+    }
+  });
+})();
+function closeExitPopup(){
+  document.getElementById('exitPopup').style.display = 'none';
+  sessionStorage.setItem('exitDismissed','1');
+}
+</script>
+
+</body>
+</html>

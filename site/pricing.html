@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CostSage Pricing — Pays for Itself in Week 1</title>
+  <meta name="description" content="Simple pricing that pays for itself. CostSage Agentic AI identifies and executes an average of $61K/month in cloud savings. Free 14-day trial — no credit card required."/>
+  <link rel="canonical" href="https://costsage.ai/pricing"/>
+  <link rel="icon" type="image/png" href="assets/costsage_ai_project_logos_cropped-cost-sage-logo-dark-01-32x32.png"/>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://costsage.ai/pricing"/>
+  <meta property="og:site_name" content="CostSage"/>
+  <meta property="og:title" content="CostSage Pricing — Pays for Itself in Week 1"/>
+  <meta property="og:description" content="Simple pricing that pays for itself. CostSage identifies an average of $61K/month in cloud savings. Start your free 14-day trial — no credit card required."/>
+  <meta property="og:image" content="https://costsage.ai/assets/costsage_ai_project_logos_cost-sage-logo-dark-01-300x65.png"/>
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="CostSage Pricing — Pays for Itself in Week 1"/>
+  <meta name="twitter:description" content="Simple pricing that pays for itself. CostSage identifies an average of $61K/month in cloud savings. Start your free 14-day trial — no credit card required."/>
+  <meta name="twitter:image" content="https://costsage.ai/assets/costsage_ai_project_logos_cost-sage-logo-dark-01-300x65.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does CostSage access my cloud?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Read-only IAM roles (AWS) or Azure RBAC Cost Management Reader permissions. We never request write access for analysis. Execution uses a separate, minimal-permission role you pre-approve and can revoke anytime."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens when I approve a recommendation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The agent executes the change using a scoped execution role. Every action is logged in a full audit trail. Automatic rollback triggers monitor performance post-change — if anything degrades, the change is reversed automatically."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the trial really free with no credit card?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — 14 full days, all features included, no credit card required. Connect your cloud account and see real recommendations from your actual infrastructure within minutes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if my cloud spend exceeds my plan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We notify you when you approach your spend tier and you can upgrade at any time. We never cut off recommendations mid-month — your agent keeps working while you decide."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I have to auto-execute recommendations?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — the default is always human-in-the-loop. Every recommendation requires your explicit approval. Enterprise plans can configure auto-approval rules for specific recommendation categories if you choose."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does setup actually take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most customers connect their first cloud account in under 60 seconds. The agent begins analysis immediately and surfaces its first set of recommendations within minutes."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #7BC04B; --green-dark: #5a9e30; --green-text: #3d7a1f; --green-light: #d4f0b5; --green-xlight: #f0fae7;
+      --navy: #0d1f2d; --slate: #2e3d4e; --gray: #6b7280;
+      --gray-light: #f4f6f8; --white: #ffffff; --border: #e5e9ee;
+      --radius: 14px; --shadow: 0 4px 24px rgba(0,0,0,0.08); --shadow-lg: 0 16px 56px rgba(0,0,0,0.16);
+      --orange: #f5a623;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); line-height: 1.6; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .nav-logo img { height: 36px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--slate); font-size: 0.92rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: #3d7a1f; }
+    .nav-cta { display: flex; gap: 10px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 24px; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all .2s; text-decoration: none; border: none; white-space: nowrap; }
+    .btn-ghost { color: var(--slate); background: transparent; border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--green); color: #3d7a1f; }
+    .btn-primary { background: var(--green); color: var(--white); }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(123,192,75,0.45); }
+    .btn-large { padding: 15px 36px; font-size: 1rem; border-radius: 10px; }
+    .btn-navy { background: var(--navy); color: white; }
+    .btn-navy:hover { background: var(--slate); }
+    .btn-white { background: white; color: var(--navy); }
+    .btn-white:hover { background: var(--gray-light); }
+
+    /* HERO */
+    .page-hero { background: linear-gradient(145deg, var(--navy) 0%, #0f2840 100%); padding: 80px 40px 72px; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(123,192,75,0.15) 0%, transparent 60%); }
+    .hero-inner { max-width: 680px; margin: 0 auto; text-align: center; position: relative; }
+    .chip { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; margin-bottom: 14px; }
+    .chip-green { background: rgba(123,192,75,0.18); border: 1px solid rgba(123,192,75,0.4); color: var(--green); }
+    .chip-light { background: var(--green-light); color: var(--green-dark); }
+    .page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 900; color: var(--white); margin-bottom: 16px; line-height: 1.12; }
+    .page-hero h1 em { color: var(--green); font-style: normal; }
+    .page-hero .sub { color: rgba(255,255,255,0.68); font-size: 1rem; margin-bottom: 28px; }
+    .roi-banner { background: rgba(123,192,75,0.12); border: 1px solid rgba(123,192,75,0.35); border-radius: 10px; padding: 14px 22px; display: inline-flex; align-items: center; gap: 12px; }
+    .roi-banner .icon { font-size: 1.4rem; }
+    .roi-banner p { font-size: 0.88rem; color: rgba(255,255,255,0.8); text-align: left; }
+    .roi-banner strong { color: var(--green); }
+
+    /* BILLING LABEL */
+    .toggle-section { background: var(--gray-light); padding: 16px 40px; border-bottom: 1px solid var(--border); }
+    .toggle-inner { max-width: 440px; margin: 0 auto; text-align: center; }
+    .toggle-inner p { font-size: 0.85rem; color: var(--gray); font-weight: 600; }
+
+    section { padding: 72px 40px; }
+    .container { max-width: 1160px; margin: 0 auto; }
+    .section-title { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 14px; }
+
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .plan-card { border-radius: 18px; padding: 36px 32px; border: 2px solid var(--border); background: var(--white); display: flex; flex-direction: column; transition: .2s; position: relative; }
+    .plan-card:hover { box-shadow: var(--shadow-lg); }
+    .plan-card.featured { border-color: var(--green); background: var(--navy); }
+    .featured-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--green); color: white; font-size: 0.72rem; font-weight: 800; padding: 4px 16px; border-radius: 100px; white-space: nowrap; letter-spacing: .05em; }
+    .plan-label { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--green); margin-bottom: 6px; }
+    .plan-desc { font-size: 0.88rem; color: var(--gray); margin-bottom: 24px; }
+    .plan-card.featured .plan-desc { color: rgba(255,255,255,0.6); }
+    .plan-price { font-size: 2.8rem; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+    .plan-card.featured .plan-price { color: var(--green); }
+    .plan-period { font-size: 0.82rem; color: var(--gray); margin-bottom: 28px; }
+    .plan-card.featured .plan-period { color: rgba(255,255,255,0.5); }
+    .plan-divider { height: 1px; background: var(--border); margin: 18px 0; }
+    .plan-card.featured .plan-divider { background: rgba(255,255,255,0.12); }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; margin-bottom: 28px; }
+    .pf { font-size: 0.88rem; padding-left: 22px; position: relative; color: var(--slate); }
+    .pf::before { content: '✓'; position: absolute; left: 0; font-weight: 900; color: var(--green); }
+    .pf.dim { opacity: 0.35; }
+    .pf.dim::before { content: '–'; color: var(--gray); }
+    .plan-card.featured .pf { color: rgba(255,255,255,0.85); }
+    .plan-roi { background: var(--green-xlight); border-radius: 8px; padding: 12px 16px; margin-bottom: 24px; font-size: 0.82rem; color: var(--green-dark); font-weight: 600; }
+    .plan-card.featured .plan-roi { background: rgba(123,192,75,0.15); color: var(--green); }
+
+    /* ZERO-RISK BANNER */
+    .zero-risk-banner { display:flex; align-items:center; gap:10px; background:var(--green-xlight); border:1.5px solid var(--green-light); border-radius:12px; padding:14px 24px; margin-bottom:36px; font-size:0.88rem; color:var(--navy); flex-wrap:wrap; justify-content:center; text-align:center; }
+    .zero-risk-banner strong { color:var(--green-text); }
+
+    /* MODEL STRIP */
+    .model-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1.5px solid var(--border); border-radius:14px; overflow:hidden; margin-bottom:36px; background:var(--white); }
+    .model-item { padding:20px 24px; display:flex; gap:14px; align-items:flex-start; border-right:1px solid var(--border); }
+    .model-item:last-child { border-right:none; }
+    .mi-icon { font-size:1.5rem; flex-shrink:0; }
+    .model-item p { font-size:0.84rem; color:var(--gray); line-height:1.55; }
+    .model-item p strong { color:var(--navy); display:block; margin-bottom:2px; font-size:0.88rem; }
+
+    /* 3-COLUMN PRICING GRID */
+    .pricing-grid-4 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    @media (max-width:900px) { .pricing-grid-4 { grid-template-columns:1fr; } }
+
+    /* ALL FEATURES BAND */
+    .features-all { border:1.5px solid var(--green-light); border-radius:14px; background:var(--green-xlight); padding:24px 28px; margin-bottom:28px; }
+    .features-all-ttl { font-size:0.78rem; font-weight:800; text-transform:uppercase; letter-spacing:.09em; color:var(--green-text); margin-bottom:16px; }
+    .features-all-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px 20px; }
+    @media (max-width:900px) { .features-all-grid { grid-template-columns:repeat(2,1fr); } }
+    .fa-item { font-size:0.82rem; color:var(--slate); padding-left:18px; position:relative; }
+    .fa-item::before { content:'✓'; position:absolute; left:0; color:var(--green-text); font-weight:900; }
+
+    /* PLAN CARD OVERRIDES */
+    .plan-card .plan-name { font-size:1.4rem; font-weight:900; color:var(--navy); margin-bottom:2px; }
+    .plan-card.featured .plan-name { color:var(--white); }
+    .best-for { font-size:0.72rem; font-weight:700; color:var(--gray); text-transform:uppercase; letter-spacing:.07em; margin-bottom:14px; }
+    .plan-card.featured .best-for { color:rgba(255,255,255,0.4); }
+
+    /* KEEP HEADLINE */
+    .keep-hl { font-size:1rem; font-weight:700; color:var(--slate); margin-bottom:18px; line-height:1.35; }
+    .keep-hl .keep-pct { font-size:1.45rem; font-weight:900; color:var(--green-text); }
+    .plan-card.featured .keep-hl { color:rgba(255,255,255,0.75); }
+    .plan-card.featured .keep-pct { color:var(--green); }
+
+    /* PRICE BLOCK */
+    .price-block { margin-bottom:18px; }
+    .price-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--gray); margin-bottom:4px; }
+    .plan-card.featured .price-label { color:rgba(255,255,255,0.4); }
+    .price-main { font-size:2.2rem; font-weight:900; color:#1a5fa8; line-height:1; }
+    .price-mo { font-size:0.95rem; font-weight:600; color:#1a5fa8; }
+    .price-plus { font-size:0.9rem; font-weight:700; color:#1a5fa8; margin-top:5px; }
+    .price-explain { font-size: 0.72rem; color: #6b7280; margin-top: 4px; line-height: 1.4; }
+    .plan-card.featured .price-main { color:var(--green); }
+    .plan-card.featured .price-plus { color:var(--green); }
+    .plan-card.featured .price-mo { color:var(--green); }
+    /* Tier differentiators */
+    .plan-diff { display:flex; flex-direction:column; gap:8px; margin-bottom:20px; }
+    .pd-row { display:flex; align-items:center; gap:10px; font-size:0.85rem; color:var(--slate); }
+    .pd-row .pd-icon { font-size:1rem; width:20px; text-align:center; flex-shrink:0; }
+    .plan-card.featured .pd-row { color:rgba(255,255,255,0.8); }
+
+    /* ROI EXAMPLE BOX */
+    .roi-ex { background:var(--green-xlight); border:1px solid var(--green-light); border-radius:10px; padding:12px 14px; margin-bottom:18px; }
+    .plan-card.featured .roi-ex { background:rgba(123,192,75,0.12); border-color:rgba(123,192,75,0.3); }
+    .roi-ex-ttl { font-size:0.65rem; font-weight:900; text-transform:uppercase; letter-spacing:.09em; color:var(--green-text); margin-bottom:9px; }
+    .plan-card.featured .roi-ex-ttl { color:var(--green); }
+    .roi-ex-row { display:flex; justify-content:space-between; font-size:0.78rem; padding:2px 0; color:var(--gray); }
+    .roi-ex-row strong { font-weight:700; color:var(--navy); }
+    .plan-card.featured .roi-ex-row strong { color:rgba(255,255,255,0.9); }
+    .plan-card.featured .roi-ex-row { color:rgba(255,255,255,0.45); }
+    .roi-ex-keep { display:flex; justify-content:space-between; font-size:0.83rem; font-weight:800; color:var(--green-text); border-top:1.5px solid var(--green-light); margin-top:7px; padding-top:7px; }
+    .plan-card.featured .roi-ex-keep { color:var(--green); border-top-color:rgba(123,192,75,0.4); }
+
+    /* CTA ROW */
+    .cta-full { justify-content:center; width:100%; }
+    .cta-micro { text-align:center; font-size:0.72rem; color:var(--gray); margin-top:8px; }
+    .plan-card.featured .cta-micro { color:rgba(255,255,255,0.38); }
+
+    /* COMPETITOR PRICING COMPARISON */
+    .comp-pricing-strip { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 14px; padding: 28px 32px; margin: 24px 0; }
+    .cp-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; text-align: center; margin-bottom: 20px; }
+    .cp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+    @media (max-width: 700px) { .cp-grid { grid-template-columns: 1fr 1fr; } }
+    .cp-col { padding: 14px 16px; border-radius: 10px; text-align: center; }
+    .cp-them { background: #fff; border: 1px solid #e5e7eb; }
+    .cp-us { background: linear-gradient(135deg, #064e3b, #065f46); border: 2px solid #16a34a; }
+    .cp-best { font-size: 0.65rem; font-weight: 800; color: #4ade80; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .cp-name { font-weight: 800; font-size: 0.9rem; margin-bottom: 6px; }
+    .cp-them .cp-name { color: #374151; }
+    .cp-us .cp-name { color: #fff; }
+    .cp-detail { font-size: 0.78rem; line-height: 1.5; }
+    .cp-them .cp-detail { color: #6b7280; }
+    .cp-us .cp-detail { color: rgba(255,255,255,0.85); }
+    .cp-detail span { font-size: 0.7rem; opacity: 0.7; }
+    .cp-note { font-size: 0.78rem; color: #6b7280; text-align: center; font-style: italic; }
+
+    /* TRUST ROW */
+    .trust-pills { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+    .tpill { display: flex; align-items: center; gap: 7px; font-size: 0.82rem; color: var(--gray); font-weight: 500; }
+    .tpill .ico { color: var(--green-dark); }
+
+    /* ROI CALCULATOR */
+    .roi-calc { background: var(--navy); padding: 80px 40px; }
+    .roi-inner { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .roi-text h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; color: var(--white); margin-bottom: 16px; }
+    .roi-text h2 em { color: var(--green); font-style: normal; }
+    .roi-text p { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.65; margin-bottom: 28px; }
+    .roi-widget { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 36px; }
+    .roi-widget h4 { color: var(--white); font-size: 1rem; font-weight: 700; margin-bottom: 20px; }
+    .roi-slider-row { margin-bottom: 20px; }
+    .roi-slider-label { display: flex; justify-content: space-between; font-size: 0.82rem; color: rgba(255,255,255,0.6); margin-bottom: 8px; }
+    .roi-slider-label strong { color: var(--white); font-size: 0.9rem; }
+    input[type="range"] { width: 100%; accent-color: var(--green); }
+    .roi-result { background: rgba(123,192,75,0.15); border: 1px solid rgba(123,192,75,0.3); border-radius: 12px; padding: 20px; text-align: center; margin-top: 20px; }
+    .roi-result .big { font-size: 2.2rem; font-weight: 900; color: var(--green); }
+    .roi-result .lbl { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 4px; }
+
+    /* FAQ */
+    .faq-sec { background: var(--gray-light); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
+    .faq-item { background: var(--white); border-radius: var(--radius); padding: 26px 30px; border: 1.5px solid var(--border); }
+    .faq-item h4 { font-size: 0.93rem; font-weight: 700; margin-bottom: 10px; }
+    .faq-item p { font-size: 0.87rem; color: var(--gray); line-height: 1.65; }
+
+    /* FINAL CTA */
+    .final-cta { background: var(--green-xlight); border-top: 1.5px solid var(--green-light); padding: 80px 40px; text-align: center; }
+    .final-cta h2 { font-size: clamp(1.9rem, 3.5vw, 2.6rem); font-weight: 900; color: var(--navy); margin-bottom: 14px; }
+    .final-cta h2 em { color: var(--green-dark); font-style: normal; }
+    .final-cta p { color: var(--gray); font-size: 0.98rem; margin-bottom: 32px; max-width: 460px; margin-left: auto; margin-right: auto; }
+    .cta-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .money-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--green-dark); font-weight: 700; margin-top: 16px; }
+
+    /* ─── GUARANTEE STRIP (near plan cards) ─── */
+    .guarantee-strip { background: linear-gradient(90deg, #e8fdd3, #d4f0b5); border: 1.5px solid var(--green-light); border-radius: 12px; padding: 18px 28px; display: flex; align-items: center; gap: 16px; margin-top: 28px; flex-wrap: wrap; justify-content: center; text-align: left; }
+    .gs-shield { font-size: 2rem; flex-shrink: 0; }
+    .gs-text strong { display: block; font-size: 0.95rem; font-weight: 900; color: var(--green-text); margin-bottom: 4px; }
+    .gs-text p { font-size: 0.82rem; color: var(--navy); margin: 0; line-height: 1.55; }
+
+    /* ─── ONBOARDING TIMELINE ─── */
+    .onboard-section { background: var(--gray-light); padding: 80px 40px; }
+    .onboard-inner { max-width: 1160px; margin: 0 auto; }
+    .onboard-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; margin-top: 44px; }
+    .onboard-steps::before { content: ''; position: absolute; top: 23px; left: 12.5%; right: 12.5%; height: 2px; background: linear-gradient(90deg, var(--green), var(--green-dark)); z-index: 0; }
+    .ob-step { text-align: center; padding: 0 14px; position: relative; z-index: 1; }
+    .ob-icon-wrap { width: 48px; height: 48px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin: 0 auto 14px; box-shadow: 0 4px 16px rgba(123,192,75,0.4); }
+    .ob-time { font-size: 0.68rem; font-weight: 800; color: var(--green-text); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 5px; }
+    .ob-label { font-size: 0.93rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+    .ob-desc { font-size: 0.8rem; color: var(--gray); line-height: 1.5; }
+    @media (max-width: 900px) {
+      .onboard-steps { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .onboard-steps::before { display: none; }
+      .guarantee-strip { flex-direction: column; align-items: flex-start; }
+      .onboard-section { padding: 60px 20px; }
+    }
+    @media (max-width: 600px) {
+      .onboard-steps { grid-template-columns: 1fr; }
+    }
+
+    footer { background: var(--navy); padding: 60px 40px 32px; }
+    .footer-inner { max-width: 1160px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand img { height: 36px; margin-bottom: 16px; filter: brightness(10); }
+    .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.86rem; line-height: 1.7; max-width: 250px; }
+    .footer-col h4 { color: var(--white); font-size: 0.88rem; font-weight: 700; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.86rem; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--green); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-bottom p { color: rgba(255,255,255,0.35); font-size: 0.8rem; }
+    .fbadge { display: inline-flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.65); font-size: 0.72rem; font-weight: 600; padding: 4px 9px; border-radius: 100px; }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; } .nav-links { display: none; }
+      .page-hero, section { padding: 60px 20px; }
+      .toggle-section { padding: 12px 20px; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .model-strip { grid-template-columns: 1fr; }
+      .model-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .model-item:last-child { border-bottom: none; }
+      .roi-inner { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/costsage_ai_project_logos_cost-sage-logo-dark-01-300x65.png" alt="CostSage"/></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="pricing.html" class="active">Pricing</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="https://app.costsage.ai/" target="_blank" rel="noopener" class="btn btn-ghost" style="padding:9px 18px;font-size:0.85rem;">Log In</a>
+    <a href="#plans" class="btn btn-primary" style="padding:10px 20px;font-size:0.88rem;">Start Free Trial →</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <div class="chip chip-green">Pricing</div>
+    <h1>We only win<br/>when <em>you</em> save.</h1>
+    <p class="sub">Platform fee + a % of savings we find. First month zero platform fee on every plan. Average customer keeps 7–12× more than they pay us.</p>
+    <div class="roi-banner">
+      <div class="icon">💡</div>
+      <p>Spending $100K/month on AWS? We typically find <strong>$18K–$35K in monthly savings</strong> in week one — and you keep 75–80% of it. That's $13K–$28K back in your budget every month.</p>
+    </div>
+  </div>
+</div>
+
+<!-- BILLING — monthly only -->
+<div class="toggle-section">
+  <div class="toggle-inner">
+    <p>Monthly billing — cancel anytime</p>
+  </div>
+</div>
+
+<!-- PRICING CARDS -->
+<section id="plans">
+  <div class="container">
+
+    <!-- ZERO-RISK BANNER -->
+    <div class="zero-risk-banner">
+      🎁&nbsp; <strong>First month: zero platform fee on every plan.</strong>&nbsp; We only profit when you save. No credit card required.
+    </div>
+
+    <!-- ALIGNED INCENTIVES STRIP -->
+    <div class="model-strip">
+      <div class="model-item">
+        <div class="mi-icon">🔗</div>
+        <p><strong>Aligned incentives</strong>We earn a % of what we find. If we don't save you money, we don't get paid.</p>
+      </div>
+      <div class="model-item">
+        <div class="mi-icon">📈</div>
+        <p><strong>You keep the majority</strong>Higher tiers = lower % taken, so the more you spend, the better your ratio.</p>
+      </div>
+      <div class="model-item">
+        <div class="mi-icon">🔓</div>
+        <p><strong>No lock-in, no surprises</strong>Cancel anytime. First month free. No credit card to start.</p>
+      </div>
+    </div>
+
+    <!-- EVERYTHING INCLUDED ON EVERY PLAN -->
+    <div class="features-all">
+      <div class="features-all-ttl">✓ Every feature included on every plan — no gates, no upgrades required</div>
+      <div class="features-all-grid">
+        <div class="fa-item">AI rightsizing recommendations</div>
+        <div class="fa-item">Idle resource detection</div>
+        <div class="fa-item">One-click action execution</div>
+        <div class="fa-item">RI / Savings Plan gap analysis</div>
+        <div class="fa-item">Tagging enforcement agent</div>
+        <div class="fa-item">Cost allocation by team/project</div>
+        <div class="fa-item">Slack integration</div>
+        <div class="fa-item">AWS + Azure support</div>
+        <div class="fa-item">Custom approval workflows</div>
+        <div class="fa-item">Advanced cost forecasting</div>
+        <div class="fa-item">Full audit trail &amp; auto-rollback</div>
+        <div class="fa-item">Save up to 65% on cloud costs</div>
+      </div>
+    </div>
+
+    <!-- MONEY-BACK GUARANTEE — reduce friction at the point of decision -->
+    <div class="guarantee-strip">
+      <div class="gs-shield">🛡️</div>
+      <div class="gs-text">
+        <strong>30-Day Savings Guarantee</strong>
+        <p>If CostSage doesn't identify at least <strong>2× your subscription cost</strong> in monthly savings within 30 days, we'll refund your first month's platform fee. No questions, no negotiations, no forms to fill in.</p>
+      </div>
+    </div>
+
+    <!-- 3-TIER CARDS -->
+    <div class="pricing-grid-4">
+
+      <!-- STARTER -->
+      <div class="plan-card">
+        <div class="best-for">Cloud Spend Up to $25K/month</div>
+        <div class="plan-name">Starter</div>
+        <div class="plan-divider"></div>
+        <div class="price-block">
+          <div class="price-label">Platform Fee</div>
+          <div class="price-main">$249<span class="price-mo">/mo</span></div>
+          <div class="price-plus">+ 30% of savings identified</div>
+          <div class="price-explain">Platform fee + our share of savings found. You keep 70% of what we identify.</div>
+        </div>
+        <div class="roi-ex">
+          <div class="roi-ex-ttl">Example · Spend $15K/mo</div>
+          <div class="roi-ex-row"><span>Savings we find</span><strong>$4,500/mo</strong></div>
+          <div class="roi-ex-row"><span>Your total cost</span><strong>$1,599/mo</strong></div>
+          <div class="roi-ex-keep"><span>You keep</span><span>$2,901/mo</span></div>
+        </div>
+        <div class="plan-diff">
+          <div class="pd-row"><span class="pd-icon">☁️</span> Up to 3 cloud accounts</div>
+          <div class="pd-row"><span class="pd-icon">👤</span> Up to 5 users</div>
+          <div class="pd-row"><span class="pd-icon">📧</span> Email support</div>
+          <div class="pd-row"><span class="pd-icon">🎁</span> First Month Zero Platform Fee</div>
+        </div>
+        <a href="https://app.costsage.ai/" target="_blank" rel="noopener" class="btn btn-ghost btn-large cta-full">Try Free — No Card →</a>
+        <p class="cta-micro">No credit card · Cancel anytime</p>
+      </div>
+
+      <!-- GROWTH (FEATURED) -->
+      <div class="plan-card featured">
+        <div class="featured-badge">⭐ MOST POPULAR</div>
+        <div class="best-for">Cloud Spend $25K–$75K/month</div>
+        <div class="plan-name">Growth</div>
+        <div class="plan-divider"></div>
+        <div class="price-block">
+          <div class="price-label">Platform Fee</div>
+          <div class="price-main">$749<span class="price-mo">/mo</span></div>
+          <div class="price-plus">+ 25% of savings identified</div>
+          <div class="price-explain">Platform fee + our share of savings found. You keep 75% of what we identify.</div>
+        </div>
+        <div class="roi-ex">
+          <div class="roi-ex-ttl">Example · Spend $50K/mo</div>
+          <div class="roi-ex-row"><span>Savings we find</span><strong>$15,000/mo</strong></div>
+          <div class="roi-ex-row"><span>Your total cost</span><strong>$4,499/mo</strong></div>
+          <div class="roi-ex-keep"><span>You keep</span><span>$10,501/mo</span></div>
+        </div>
+        <div class="plan-diff">
+          <div class="pd-row"><span class="pd-icon">☁️</span> Up to 10 cloud accounts</div>
+          <div class="pd-row"><span class="pd-icon">👤</span> Up to 15 users</div>
+          <div class="pd-row"><span class="pd-icon">💬</span> Priority Slack support</div>
+          <div class="pd-row"><span class="pd-icon">🎁</span> First Month Zero Platform Fee</div>
+        </div>
+        <a href="https://app.costsage.ai/" target="_blank" rel="noopener" class="btn btn-primary btn-large cta-full" style="box-shadow:0 8px 28px rgba(123,192,75,0.45);">Start Saving Today →</a>
+        <p class="cta-micro">No credit card · Cancel anytime</p>
+      </div>
+
+      <!-- ENTERPRISE -->
+      <div class="plan-card">
+        <div class="best-for">Cloud Spend $75K+/month</div>
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-divider"></div>
+        <div class="price-block">
+          <div class="price-label">Platform Fee</div>
+          <div class="price-main" style="font-size:1.9rem;">Custom</div>
+          <div style="font-size:0.72rem;color:#6b7280;margin-top:4px;">Typically $1,500–$4,000/mo<br/>for $75K–$500K cloud spend</div>
+          <div class="price-plus">+ 15% of savings identified</div>
+          <div class="price-explain">Best ratio — you keep 85% of every dollar we find you.</div>
+        </div>
+        <div class="roi-ex">
+          <div class="roi-ex-ttl">Example · Spend $160K/mo</div>
+          <div class="roi-ex-row"><span>Savings we find</span><strong>$60,800/mo</strong></div>
+          <div class="roi-ex-row"><span>Your total cost</span><strong>$9,120 + fee</strong></div>
+          <div class="roi-ex-keep"><span>You keep</span><span>$51,680+/mo</span></div>
+        </div>
+        <div class="plan-diff">
+          <div class="pd-row"><span class="pd-icon">☁️</span> Unlimited cloud accounts</div>
+          <div class="pd-row"><span class="pd-icon">👤</span> Unlimited users</div>
+          <div class="pd-row"><span class="pd-icon">🤝</span> Dedicated FinOps success manager</div>
+          <div class="pd-row"><span class="pd-icon">🎁</span> First Month Zero Platform Fee</div>
+        </div>
+        <a href="contact.html" class="btn btn-navy btn-large cta-full">Talk to Our Team →</a>
+        <p class="cta-micro">Free savings estimate · No credit card · Replies within 2 hrs</p>
+      </div>
+
+    </div>
+
+    <!-- TRUST PILLS -->
+    <div class="trust-pills">
+      <div class="tpill"><span class="ico">✓</span> No credit card for trial</div>
+      <div class="tpill"><span class="ico">✓</span> Cancel anytime</div>
+      <div class="tpill"><span class="ico">✓</span> ISO 42001 AI Certified</div>
+      <div class="tpill"><span class="ico">✓</span> ISO 27001 Info Security</div>
+      <div class="tpill"><span class="ico">✓</span> ISO 9001 Quality Mgmt</div>
+      <div class="tpill"><span class="ico">✓</span> Setup in under 60 seconds</div>
+      <div class="tpill"><span class="ico">✓</span> AWS Partner Network</div>
+      <div class="tpill"><span class="ico">✓</span> <a href="https://www.g2.com/products/costsage/reviews" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">5★ on G2</a></div>
+    </div>
+
+    <!-- COMPETITOR PRICING COMPARISON -->
+    <div class="comp-pricing-strip">
+      <div class="cp-title">How CostSage compares on pricing</div>
+      <div class="cp-grid">
+        <div class="cp-col cp-them">
+          <div class="cp-name">nOps</div>
+          <div class="cp-detail">30–35% of savings<br/><span>+ variable platform fee</span></div>
+        </div>
+        <div class="cp-col cp-them">
+          <div class="cp-name">CloudZero</div>
+          <div class="cp-detail">Custom enterprise pricing<br/><span>Requires sales call</span></div>
+        </div>
+        <div class="cp-col cp-us">
+          <div class="cp-best">✓ Best Value</div>
+          <div class="cp-name">CostSage</div>
+          <div class="cp-detail">From 15% of savings<br/><span>First month platform fee free</span></div>
+        </div>
+        <div class="cp-col cp-them">
+          <div class="cp-name">AWS Cost Explorer</div>
+          <div class="cp-detail">Free visibility only<br/><span>No execution, no agent</span></div>
+        </div>
+      </div>
+      <p class="cp-note">All competitors charge for visibility. CostSage charges for results — and only when we deliver them.</p>
+    </div>
+
+    <!-- TRUST BADGE STRIP -->
+    <div style="margin-top:40px;padding-top:32px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;">
+      <span style="font-size:0.72rem;font-weight:800;color:var(--gray);text-transform:uppercase;letter-spacing:.1em;">Trusted. Verified. Secured.</span>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center;">
+        <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1.5px solid var(--border);border-radius:7px;background:white;">
+          <img src="assets/costsage_ai_project_product_images_aws-logo.png" alt="AWS" style="height:18px;"/>
+          <div style="line-height:1.1;"><span style="display:block;font-size:0.55rem;font-weight:800;text-transform:uppercase;color:#232f3e;">partner</span><span style="font-size:0.6rem;color:var(--gray);">network</span></div>
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1.5px solid var(--border);border-radius:7px;background:white;">
+          <img src="assets/costsage_ai_project_product_images_aws-logo.png" alt="AWS" style="height:18px;"/>
+          <div style="line-height:1.1;"><span style="display:block;font-size:0.55rem;font-weight:800;text-transform:uppercase;color:#232f3e;">buy on</span><span style="font-size:0.6rem;color:var(--gray);">AWS</span></div>
+        </div>
+        <div style="padding:7px 12px;border:1.5px solid #2d5a9f;border-radius:7px;text-align:center;background:linear-gradient(135deg,#1e3a5f,#0f2340);" title="ISO/IEC 27001:2022 — Information Security Management">
+          <div style="font-size:0.5rem;font-weight:900;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.07em;">ISO / IEC</div>
+          <div style="font-size:0.82rem;font-weight:900;color:#7dd3fc;line-height:1;">27001</div>
+          <div style="font-size:0.48rem;font-weight:800;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:.04em;margin-top:2px;">Info Security</div>
+          <div style="font-size:0.44rem;font-weight:700;color:#93c5fd;margin-top:1px;">2022 Certified</div>
+        </div>
+        <div style="padding:7px 12px;border:1.5px solid #059669;border-radius:7px;text-align:center;background:linear-gradient(135deg,#064e3b,#065f46);" title="ISO 9001:2015 — Quality Management System">
+          <div style="font-size:0.5rem;font-weight:900;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.07em;">ISO</div>
+          <div style="font-size:0.82rem;font-weight:900;color:#6ee7b7;line-height:1;">9001</div>
+          <div style="font-size:0.48rem;font-weight:800;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:.04em;margin-top:2px;">Quality Mgmt</div>
+          <div style="font-size:0.44rem;font-weight:700;color:#a7f3d0;margin-top:1px;">2015 Certified</div>
+        </div>
+        <div style="padding:6px 12px;border:1.5px solid #ff492c;border-radius:7px;text-align:center;background:white;">
+          <div style="font-size:1.2rem;font-weight:900;color:#ff492c;line-height:1;font-family:Georgia,serif;">G²</div>
+          <div style="font-size:0.5rem;color:var(--orange);">★★★★★</div>
+          <div style="font-size:0.52rem;font-weight:800;color:var(--slate);text-transform:uppercase;letter-spacing:.03em;">High Performer</div>
+        </div>
+        <div style="padding:6px 14px;border:1.5px solid #1f73b7;border-radius:7px;text-align:center;background:white;">
+          <div style="font-size:0.7rem;font-weight:900;color:#1f73b7;letter-spacing:-0.3px;">Capterra</div>
+          <div style="font-size:0.52rem;color:#ff7a00;font-weight:700;">▶ Top Rated</div>
+          <div style="font-size:0.5rem;font-weight:700;color:var(--slate);text-transform:uppercase;">2025</div>
+        </div>
+        <div style="padding:6px 12px;border:1.5px solid #006d77;border-radius:7px;text-align:center;background:#006d77;">
+          <div style="font-size:0.55rem;font-weight:900;color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:.06em;">CMM</div>
+          <div style="font-size:0.88rem;font-weight:900;color:#fff;line-height:1;">L2</div>
+          <div style="font-size:0.5rem;font-weight:700;color:rgba(255,255,255,0.75);text-transform:uppercase;">Certified</div>
+        </div>
+        <div style="padding:6px 12px;border:1.5px solid #7c3aed;border-radius:7px;text-align:center;background:linear-gradient(135deg,#4c1d95,#5b21b6);" title="SOC 2 Type II — In Progress">
+          <div style="font-size:0.5rem;font-weight:900;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.07em;">SOC 2</div>
+          <div style="font-size:0.75rem;font-weight:900;color:#c4b5fd;line-height:1;">Type II</div>
+          <div style="font-size:0.44rem;font-weight:700;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:.04em;margin-top:2px;">In Progress</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT HAPPENS AFTER SIGNUP -->
+<section class="onboard-section">
+  <div class="onboard-inner">
+    <div style="text-align:center;">
+      <div class="chip chip-green">After You Sign Up</div>
+      <h2 class="section-title" style="text-align:center;">From signup to <em style="color:var(--green-dark);font-style:normal;">first savings</em> in minutes</h2>
+      <p class="section-sub" style="text-align:center;max-width:520px;margin:0 auto;">No onboarding calls. No professional services engagement. Just connect, approve, and save.</p>
+    </div>
+    <div class="onboard-steps">
+      <div class="ob-step">
+        <div class="ob-icon-wrap">📧</div>
+        <div class="ob-time">Instant</div>
+        <div class="ob-label">Enter your email</div>
+        <div class="ob-desc">Create your free account in seconds — no credit card, no contract.</div>
+      </div>
+      <div class="ob-step">
+        <div class="ob-icon-wrap">☁️</div>
+        <div class="ob-time">Under 60 seconds</div>
+        <div class="ob-label">Connect your cloud</div>
+        <div class="ob-desc">Read-only IAM role for AWS or RBAC for Azure. One-click guided setup.</div>
+      </div>
+      <div class="ob-step">
+        <div class="ob-icon-wrap">🔍</div>
+        <div class="ob-time">Within minutes</div>
+        <div class="ob-label">See first recommendations</div>
+        <div class="ob-desc">CostSage analyses your infrastructure and surfaces high-confidence savings with full justification.</div>
+      </div>
+      <div class="ob-step">
+        <div class="ob-icon-wrap">✅</div>
+        <div class="ob-time">Your choice</div>
+        <div class="ob-label">Approve &amp; save</div>
+        <div class="ob-desc">One click executes the change. Full audit trail. Auto-rollback if anything degrades.</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="https://app.costsage.ai/" target="_blank" rel="noopener" class="btn btn-primary btn-large">Start Free — See Your Savings →</a>
+      <p style="font-size:0.78rem;color:var(--gray);margin-top:10px;">14-day free trial · No credit card · Cancel anytime</p>
+    </div>
+  </div>
+</section>
+
+<!-- ROI CALCULATOR -->
+<section class="roi-calc">
+  <div class="roi-inner">
+    <div class="roi-text">
+      <div class="chip chip-green" style="display:inline-block;margin-bottom:16px;">ROI Calculator</div>
+      <h2>What will your<br/><em>agent save you?</em></h2>
+      <p>On average, CostSage identifies 18–35% waste in a team's cloud infrastructure within the first week. Drag the slider to estimate your savings — and compare that to your plan cost.</p>
+      <a href="#plans" class="btn btn-primary btn-large">Start My Free Trial →</a>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:10px;">See real recommendations from your account — free, no card</p>
+    </div>
+    <div class="roi-widget">
+      <h4>Estimate your monthly savings</h4>
+      <div class="roi-slider-row">
+        <div class="roi-slider-label"><span>Monthly cloud spend</span><strong id="spend-label">$100,000</strong></div>
+        <input type="range" min="10000" max="1000000" step="10000" value="100000" id="spend-slider" oninput="calcROI()"/>
+      </div>
+      <div class="roi-slider-row">
+        <div class="roi-slider-label"><span>Expected waste (industry avg: 30%)</span><strong id="waste-label">30%</strong></div>
+        <input type="range" min="10" max="50" step="5" value="30" id="waste-slider" oninput="calcROI()"/>
+      </div>
+      <div class="roi-result">
+        <div class="big" id="roi-saving">$30,000</div>
+        <div class="lbl">Estimated monthly savings CostSage could find</div>
+      </div>
+      <p style="font-size:0.75rem;color:rgba(255,255,255,0.4);text-align:center;margin-top:14px;">Based on real customer data. Actual savings may vary.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-sec">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:8px;">
+      <div class="chip chip-light">FAQ</div>
+      <h2 class="section-title" style="text-align:center;">Every question before you sign up</h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h4>How does CostSage access my cloud?</h4>
+        <p>Read-only IAM roles (AWS) or Azure RBAC Cost Management Reader permissions. We never request write access for analysis. Execution uses a separate, minimal-permission role you pre-approve and can revoke anytime.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What happens when I approve a recommendation?</h4>
+        <p>The agent executes the change using a scoped execution role. Every action is logged in a full audit trail. Automatic rollback triggers monitor performance post-change — if anything degrades, the change is reversed automatically.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Is the trial really free with no credit card?</h4>
+        <p>Yes — 14 full days, all features included, no credit card required. Connect your cloud account and see real recommendations from your actual infrastructure within minutes.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What if my cloud spend exceeds my plan?</h4>
+        <p>We notify you when you approach your spend tier and you can upgrade at any time. We never cut off recommendations mid-month — your agent keeps working while you decide.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Do I have to auto-execute recommendations?</h4>
+        <p>No — the default is always human-in-the-loop. Every recommendation requires your explicit approval. Enterprise plans can configure auto-approval rules for specific recommendation categories if you choose.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How long does setup actually take?</h4>
+        <p>Most customers connect their first cloud account in under 60 seconds. The agent begins analysis immediately and surfaces its first set of recommendations within minutes — often before your first cup of coffee is done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container" style="max-width:600px;">
+    <div class="chip chip-light" style="display:inline-block;margin-bottom:16px;">Get Started Today</div>
+    <h2>Start saving <em>today</em>. First month is on us.</h2>
+    <p>14-day free trial. Full agent access — rightsizing, execution, reporting. No credit card, no commitment. See what's hiding in your cloud bill before you pay a cent.</p>
+    <div class="cta-group">
+      <a href="#plans" class="btn btn-primary btn-large">Start Free Trial →</a>
+      <a href="contact.html" class="btn btn-ghost btn-large">Talk to Sales</a>
+    </div>
+    <div class="money-back">🛡️ 30-day savings guarantee: if we don't identify at least 2× your subscription cost in savings, we'll refund your first month. No questions asked.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/costsage_ai_project_logos_cost-sage-logo-dark-01-300x65.png" alt="CostSage"/>
+        <p>The Agentic AI for FinOps that reasons, plans, and executes cloud cost savings across AWS and Azure — 24/7.</p>
+        <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;">
+          <span class="fbadge">🤖 ISO 42001 AI Certified</span><span class="fbadge">🛡️ ISO 27001 Security</span><span class="fbadge">✅ ISO 9001 Quality</span><span class="fbadge">☁️ AWS Partner</span><span class="fbadge"><a href="https://www.g2.com/products/costsage/reviews" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">⭐ 5/5 on G2</a></span>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+      <div class="footer-col"><h4>Resources</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="blog.html">Case Studies</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 CostSage AI. All rights reserved.</p>
+      <div style="display:flex;gap:12px;"><img src="assets/costsage_ai_project_product_images_aws-logo.png" alt="AWS" style="height:20px;opacity:0.8;filter:brightness(3)"/></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function calcROI() {
+  const spend = parseInt(document.getElementById('spend-slider').value);
+  const waste = parseInt(document.getElementById('waste-slider').value);
+  const saving = Math.round(spend * waste / 100);
+  document.getElementById('spend-label').textContent = '$' + spend.toLocaleString();
+  document.getElementById('waste-label').textContent = waste + '%';
+  document.getElementById('roi-saving').textContent = '$' + saving.toLocaleString();
+}
+/* billing toggle removed — monthly only */
+
+  // Pre-fill email from query string (passed from landing page CTAs)
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var email = params.get('email');
+    if (email) {
+      document.querySelectorAll('input[type="email"]').forEach(function(inp) {
+        inp.value = decodeURIComponent(email);
+      });
+    }
+  })();
+
+<!-- EXIT INTENT POPUP -->
+<div id="exitPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:20px;padding:48px 40px;max-width:480px;width:90%;text-align:center;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.3);">
+    <button onclick="closeExitPopup()" style="position:absolute;top:16px;right:20px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#9ca3af;">×</button>
+    <div style="font-size:2rem;margin-bottom:12px;">🛡️</div>
+    <h3 style="font-size:1.4rem;font-weight:800;color:#0f1a2e;margin-bottom:8px;">Still deciding? Don't lose another month of savings.</h3>
+    <p style="color:#6b7280;font-size:0.92rem;margin-bottom:24px;">The average team wastes $583/day on unoptimised cloud spend. Start your free 14-day trial — no credit card, no commitment, cancel anytime.</p>
+    <a href="https://app.costsage.ai/" target="_blank" rel="noopener" style="display:inline-block;padding:14px 32px;background:#16a34a;color:#fff;text-decoration:none;border-radius:10px;font-weight:800;font-size:0.95rem;margin-bottom:12px;">Start Free Trial — No Card →</a>
+    <p style="font-size:0.75rem;color:#9ca3af;">Free 14-day trial · No credit card · 60-sec setup · 30-day guarantee</p>
+    <button onclick="closeExitPopup()" style="display:block;margin:8px auto 0;background:none;border:none;font-size:0.78rem;color:#9ca3af;cursor:pointer;text-decoration:underline;">No thanks, I'll keep wasting money</button>
+  </div>
+</div>
+<script>
+(function(){
+  var shown = false;
+  var dismissed = sessionStorage.getItem('exitDismissedPricing');
+  if(dismissed) return;
+  document.addEventListener('mouseleave', function(e){
+    if(!shown && e.clientY < 20){
+      shown = true;
+      var p = document.getElementById('exitPopup');
+      p.style.display = 'flex';
+    }
+  });
+})();
+function closeExitPopup(){
+  document.getElementById('exitPopup').style.display = 'none';
+  sessionStorage.setItem('exitDismissedPricing','1');
+}
+</script>
+</body>
+</html>
