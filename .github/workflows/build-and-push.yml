@@ -14,12 +14,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write        # needed to create GitHub Releases on tag pushes
       packages: write
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0     # full history so we can diff against previous tag
 
       - name: Determine build environment
         id: env
@@ -91,3 +93,83 @@ jobs:
             echo "${{ steps.meta.outputs.tags }}"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+
+      # --- Semver-tag-only steps below: release + zip backup ---
+
+      - name: Build changelog (vs previous tag)
+        if: startsWith(github.ref, 'refs/tags/v')
+        id: changelog
+        run: |
+          CURR="${GITHUB_REF_NAME}"
+          # previous tag by committer date, excluding current
+          PREV=$(git tag --sort=-creatordate | grep '^v' | grep -v "^${CURR}$" | head -1 || true)
+          {
+            echo "changelog<<__END__"
+            if [ -z "$PREV" ]; then
+              echo "Initial release."
+              echo ""
+              git log --pretty=format:'- %s (%h)' | head -50
+            else
+              echo "### Changes since ${PREV}"
+              echo ""
+              git log --pretty=format:'- %s (%h)' "${PREV}..HEAD"
+            fi
+            echo ""
+            echo "__END__"
+            echo "prev=${PREV}" >> "$GITHUB_OUTPUT"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Package site.zip (rollback artifact)
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          VER="${GITHUB_REF_NAME}"
+          cd site
+          zip -r "../site-${VER}.zip" . >/dev/null
+          cd ..
+          ls -lh "site-${VER}.zip"
+          # build-manifest.txt — one-stop rollback reference
+          cat > "build-manifest-${VER}.txt" <<EOF
+          CostSage Web — Build Manifest
+          =============================
+          Version:       ${VER}
+          Commit:        ${GITHUB_SHA}
+          Short SHA:     ${{ steps.env.outputs.sha_short }}
+          Build time:    ${{ steps.env.outputs.build_time }}
+          Build env:     ${{ steps.env.outputs.env }}
+
+          Pull this exact version:
+            docker pull ghcr.io/${{ github.repository }}:${VER#v}
+            docker pull ghcr.io/${{ github.repository }}:sha-${{ steps.env.outputs.sha_short }}
+
+          Rollback on Ubuntu laptop:
+            ssh root@marketing-claude-soc.rundev.us \\
+              'docker pull ghcr.io/${{ github.repository }}:${VER#v} && \\
+               cd /opt/wordpress && \\
+               sed -i "s|costsage-web:[^ ]*|costsage-web:${VER#v}|" docker-compose.yml && \\
+               docker compose up -d costsage-web'
+
+          Verify running:
+            curl http://10.16.140.59:8090/_build
+          EOF
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ github.ref_name }}
+          body: |
+            **Docker image:** `ghcr.io/${{ github.repository }}:${{ github.ref_name }}`
+
+            Pull this exact build:
+            ```
+            docker pull ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+            ```
+
+            ${{ steps.changelog.outputs.changelog }}
+
+            ---
+            Commit: `${{ github.sha }}` · Build time: `${{ steps.env.outputs.build_time }}`
+          files: |
+            site-${{ github.ref_name }}.zip
+            build-manifest-${{ github.ref_name }}.txt
+          generate_release_notes: false

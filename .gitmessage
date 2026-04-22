@@ -1,0 +1,13 @@
+# <type>: <short imperative summary, under 60 chars>
+#
+# Types: feat | fix | content | infra | chore | docs
+#
+# What changed in this build:
+# -
+# -
+#
+# Differs from <previous tag or commit>:
+# -
+#
+# Enable once per clone:
+#   git config commit.template .gitmessage
